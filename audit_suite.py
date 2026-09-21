@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the OXAlpha task package and its checker/reference contract."""
+"""Validate the Harness-Bench task package and checker/reference contract."""
 
 from __future__ import annotations
 
@@ -15,6 +15,8 @@ import subprocess
 import sys
 import tempfile
 import time
+
+sys.dont_write_bytecode = True
 
 from prepare_fixture import GIT_FIXTURE_SUBDIRS, prepare_fixture
 
@@ -246,7 +248,7 @@ def run_checker(
 
 def reference_audit(selected: list[Path]) -> list[dict]:
     results: list[dict] = []
-    with tempfile.TemporaryDirectory(prefix="oxalpha-audit-") as temp:
+    with tempfile.TemporaryDirectory(prefix="harness-bench-audit-") as temp:
         temp_root = Path(temp)
         bin_dir = temp_root / "bin"
         bin_dir.mkdir()
@@ -280,7 +282,7 @@ def reference_audit(selected: list[Path]) -> list[dict]:
 
 def checker_regressions() -> list[dict]:
     probes = []
-    with tempfile.TemporaryDirectory(prefix="oxalpha-regressions-") as temp:
+    with tempfile.TemporaryDirectory(prefix="harness-bench-regressions-") as temp:
         root = Path(temp)
         bin_dir = root / "bin"
         bin_dir.mkdir()

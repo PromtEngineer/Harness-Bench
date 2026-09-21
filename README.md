@@ -1,9 +1,13 @@
-# OXAlpha coding-harness benchmark
+# Harness-Bench
 
-This directory is the canonical source package for the 40-task OXAlpha
-coding-harness benchmark. It is designed to compare different agent harnesses
-while holding the model, task revision, runtime, network policy, and time
-budget fixed.
+Harness-Bench is a 40-task coding-agent benchmark designed to measure the
+impact of the agent harness itself. In a valid comparison, the model and model
+configuration, task revision, runtime, network policy, resource limits, and
+time budget stay fixed; only the harness changes.
+
+This is a harness benchmark, not a model leaderboard. Results should only be
+compared as harness results when every model-side and execution-side variable
+listed above is identical across runs.
 
 ## Task layout
 
