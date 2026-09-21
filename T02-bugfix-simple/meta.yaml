@@ -1,0 +1,7 @@
+id: T02
+slug: bugfix-simple
+tier: easy
+timeout_s: 900
+min_turns_estimate: 8
+checker_runtime_s: 10
+notes: One off-by-one bug in sliding_windows cascades into 5 of 12 failing pytest tests across three test files; tests/ is sha256-guarded.

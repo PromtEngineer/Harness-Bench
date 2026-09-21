@@ -1,0 +1,17 @@
+Implement calc.py (workspace root, Python 3 stdlib only): a spreadsheet
+formula evaluator per SPEC.md.
+
+The workspace ships sample.tsv together with sample.expected.tsv — the
+exact output your evaluator must produce for it. The sample already
+exercises most of the sharp edges: truncating division on negatives,
+all three error types and their severity order, lazy IF rescuing both
+a missing reference and a cycle, ranges with empty positions, COUNT vs
+SUM over error cells, and multi-letter column ordering in the output.
+
+Work against the sample until it is byte-identical, then re-read
+SPEC.md's sections on ranges, lazy IF, and cycles — the grader's
+hidden sheets (larger, plus a 5000-deep reference chain that will
+smash the default recursion limit, plus adversarial cycle/laziness
+combinations) probe exactly those.
+
+SPEC.md, sample.tsv, and sample.expected.tsv are sha256-guarded.

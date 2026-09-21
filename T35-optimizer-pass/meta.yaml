@@ -1,0 +1,22 @@
+id: T35
+slug: optimizer-pass
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 30
+checker_runtime_s: 30
+notes: >
+  Codebase-comprehension + compiler task: the fixture ships a complete
+  working MiniExpr compiler (lexer/parser/codegen/stack-IR interpreter,
+  all guarded); the agent implements minic/optimize.py. Required
+  transforms to fixpoint: constant folding with the interpreter's
+  truncate-toward-zero DIV/MOD (h2 folds -7/2 and -7%2 — Python //
+  folds wrong), div-by-zero preservation (h3, h8 keep 0/0 in dead-ish
+  branches guarded by runtime conditions or removed via constant
+  branches — semantics compared either way), identity elimination,
+  constant-branch elimination, unreachable-code removal after JMP, and
+  dead-store-to-POP + PUSH/POP cancellation. Grading is two-sided on 13
+  programs (3 visible with budgets published in BUDGETS.txt, 10
+  hidden): --opt output must equal unoptimized output AND op count <=
+  reference+10%+2. Build hygiene: reference optimizer semantics-checked
+  against unoptimized runs on all programs; budgets asserted strictly
+  below unoptimized counts so the no-op stub fails every program.

@@ -1,0 +1,13 @@
+==================================
+   PENSION AURORA — GUEST FOLIO
+==================================
+Folio No   : HF-1041
+Guest      : (corporate account)
+City       : Berlin
+Check-in   : 2026-03-09
+Check-out  : 2026-03-10
+Nights     : 1
+Room rate  : 158.00 EUR per night
+----------------------------------
+TOTAL CHARGED : EUR 158.00
+Payment: corporate card

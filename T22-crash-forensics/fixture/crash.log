@@ -1,0 +1,16 @@
+2026-08-04 03:12:41,203 INFO replay: reading data/orders.ndjson
+2026-08-04 03:12:41,204 INFO replay: pipeline build 2026.31.2, settlement window 2026-08-03
+Traceback (most recent call last):
+  File "/srv/orderflow/replay.py", line 6, in <module>
+    orders = [parse_order(line) for line in fh if line.strip()]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/orderflow/orderflow/parse.py", line 18, in parse_order
+    coupon = o["coupon"]
+             ~^^^^^^^^^^
+KeyError: 'coupon'
+2026-08-04 03:12:41,231 ERROR replay: settlement aborted, no report written
+2026-08-04 03:12:41,231 ERROR ops: PAGE finance-oncall: nightly settlement failed again
+2026-08-04 03:12:41,232 WARN  ops: NOTE from finance (2026-07-29): even when the
+    nightly run completes, quarter totals have been off by small amounts and the
+    last settlement of the month looks light. Treat totals as suspect until the
+    pipeline is audited against README.md.

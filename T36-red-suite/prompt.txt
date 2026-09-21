@@ -1,0 +1,23 @@
+The textstat library in this workspace has a failing test suite:
+
+    python3 -m pytest tests/ -q
+
+40 tests, 22 currently failing. The failures trace back to a SMALL
+number of root-cause bugs in the textstat/ package — several tests fail
+per bug. Your job: fix the LIBRARY so the whole suite passes.
+
+Rules:
+- Never modify tests/ or conftest.py (byte-checked against a manifest).
+- Fix root causes in textstat/, don't special-case test inputs: the
+  grader additionally runs a hidden suite that exercises the same code
+  paths with different inputs — hardcoded or input-matched fixes will
+  pass the visible suite and fail the hidden one.
+- Module and function signatures are used by downstream code; keep
+  them importable as-is (textstat.tokenize.words, textstat.ngrams.
+  bigrams/bigram_counts, textstat.readability.reading_ease,
+  textstat.wordfreq.count_freq/top_n, textstat.syllables.estimate).
+
+Suggested approach: group the failures by module, read each module
+against its own docstring contract, find the defect class, fix, re-run.
+Some failures are order-dependent symptoms of shared state — run
+single test files if the full-suite behavior confuses you.

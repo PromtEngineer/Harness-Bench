@@ -1,0 +1,24 @@
+{
+  "by_region": {
+    "east": {
+      "net_cents": 35999904,
+      "orders": 120
+    },
+    "north": {
+      "net_cents": 43843736,
+      "orders": 130
+    },
+    "south": {
+      "net_cents": 36210353,
+      "orders": 119
+    },
+    "west": {
+      "net_cents": 35468036,
+      "orders": 131
+    }
+  },
+  "discount_cents": 34706609,
+  "gross_cents": 186228638,
+  "net_cents": 151522029,
+  "orders": 500
+}

@@ -1,0 +1,29 @@
+Migrate the taskflow library from callback style to asyncio.
+
+taskflow/ is a 5-module data pipeline library written in callback style
+(source.py fetch(name, on_ok, on_err); transform.py chained callbacks;
+sink.py; pipeline.py wiring; errors.py public dataclasses/exceptions) with
+a public SYNC entrypoint run_pipeline(config) in api.py. tests/ contains
+10 behavior tests that call only run_pipeline and the public dataclasses;
+they pass right now and must still pass when you are done.
+
+Requirements:
+
+1. Migrate the internals of taskflow/ to asyncio: the source, transform,
+   sink, and pipeline stages become `async def` coroutines composed with
+   `await`, and the per-source fan-out in the pipeline must use
+   `asyncio.gather` (preserving source order in the combined results).
+2. Eliminate ALL callback-passing parameters. After the migration, the
+   strings "on_ok", "on_err", and "callback" must not appear anywhere
+   under taskflow/ (code or comments; checked case-insensitively with
+   grep).
+3. run_pipeline(config) in api.py stays synchronous — same signature,
+   same return value, same raised exceptions — and must drive the async
+   pipeline internally (e.g. via asyncio.run).
+4. Do not modify anything under tests/ (sha256-verified) and do not add
+   files to tests/. Do not change public behavior: every test must pass
+   unmodified.
+5. The migrated taskflow/ must contain at least 6 `async def` functions,
+   and at least 3 modules under taskflow/ must import asyncio.
+
+Run the tests with: python3 -m pytest tests/ -q

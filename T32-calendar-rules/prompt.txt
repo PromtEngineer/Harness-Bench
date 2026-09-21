@@ -1,0 +1,20 @@
+Implement sched.py (workspace root, Python 3 stdlib only): a recurrence
+scheduler for the FICTIONAL time zones defined in ZONES.json, following
+RULES.md exactly. Do not use zoneinfo/pytz — these zones do not exist in
+any tzdata; everything you need is in the two files.
+
+The hard 20% is civil-time correctness:
+- DST start rules are written in standard wall time, end rules in DST
+  wall time.
+- Local times inside a spring-forward gap map to the transition instant.
+- Ambiguous fall-back times map to the EARLIER UTC instant.
+- Zones include a +05:45 base offset and a 30-MINUTE DST delta.
+- "day 31" monthly rules skip short months; "last fri" works in
+  February; occurrences are STRICTLY after the start instant.
+
+RULES.md contains four worked examples with exact expected output —
+make all of them pass, then think hard about the transition weeks in
+each zone. The grader runs your CLI on a few dozen hidden cases (many
+sit on transition days) and compares output byte-for-byte.
+
+ZONES.json and RULES.md are sha256-guarded READ ONLY.

@@ -1,0 +1,10 @@
+Trattoria Lume
+Austin — table 7
+Receipt #RB-3353
+Date: Mar 22, 2026
+----------------------------
+ Covers: 1
+ Food          24.66
+ Service chg   2.44
+----------------------------
+ TOTAL USD 27.10

@@ -1,0 +1,13 @@
+==================================
+   RIVERSIDE SUITES — GUEST FOLIO
+==================================
+Folio No   : HF-1088
+Guest      : (corporate account)
+City       : London
+Check-in   : 2026-03-17
+Check-out  : 2026-03-19
+Nights     : 2
+Room rate  : 210.00 GBP per night
+----------------------------------
+TOTAL CHARGED : GBP 420.00
+Payment: corporate card

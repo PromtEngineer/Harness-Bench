@@ -1,0 +1,59 @@
+Reimbursement audit.
+
+This workspace contains a corporate travel expense submission:
+
+- ledger.csv               — 40 submitted claims (columns: claim_id, receipt_file,
+                             employee, city, date, category, claimed_usd, travel_day_flag)
+- expenses/receipts/       — receipt files in several different plain-text layouts
+                             (hotel folios, taxi receipts, restaurant bills, rail
+                             tickets, expense vouchers). ledger.csv's receipt_file
+                             column gives the path relative to the workspace root;
+                             it is empty when no receipt was submitted. Some receipt
+                             files are not referenced by any claim — ignore those.
+- policy.md                — the reimbursement policy (city tiers, caps, receipt
+                             threshold, weekend rule, conversion rule)
+- rates.json               — fixed currency conversion rates (usd_per_unit)
+
+Audit every claim in ledger.csv against policy.md and write the exact file
+violations.json in the workspace root.
+
+Rules to enforce (rule slugs are exact; use these strings verbatim):
+
+  missing-receipt   claimed_usd > 25.00 and receipt_file is empty.
+                    excess_usd = claimed_usd - 25.00
+  over-claim        a receipt exists and claimed_usd > the receipt total
+                    converted to USD.
+                    excess_usd = claimed_usd - converted_receipt_total_usd
+  weekend-meal      category is meals, the ledger date (ISO) falls on Saturday
+                    or Sunday, and travel_day_flag is not "yes".
+                    excess_usd = claimed_usd (entire amount)
+  taxi-over-cap     category is taxi and claimed_usd > 50.00.
+                    excess_usd = claimed_usd - 50.00
+  meal-over-cap     category is meals and claimed_usd > the city-tier per-diem
+                    meal cap (policy.md section 3).
+                    excess_usd = claimed_usd - cap
+  hotel-over-cap    category is hotel and claimed_usd > nightly_cap * nights
+                    (nights is printed on the hotel folio).
+                    excess_usd = claimed_usd - nightly_cap * nights
+
+Evaluation order: for each claim test the rules in exactly the order listed
+above and report only the FIRST rule that matches (each claim appears at most
+once in the output). Amounts exactly equal to a cap or threshold are compliant.
+
+Currency conversion: converted_usd = local_amount * usd_per_unit[currency],
+rounded to 2 decimal places with ROUND HALF-UP once, at conversion time.
+USD receipts convert 1:1.
+
+Output format — violations.json, exactly this shape:
+
+  [
+    {"claim_id": "C0XX", "rule": "<slug>", "excess_usd": <number, 2dp>},
+    ...
+  ]
+
+A JSON array sorted by claim_id ascending, one object per violating claim,
+with exactly the three keys shown. excess_usd is a JSON number rounded to
+2 decimal places (checked with ±0.01 tolerance).
+
+Do not modify ledger.csv, policy.md, rates.json, or anything under
+expenses/ — the checker verifies their hashes.

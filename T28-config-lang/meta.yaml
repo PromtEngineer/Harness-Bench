@@ -1,0 +1,20 @@
+id: T28
+slug: config-lang
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 35
+checker_runtime_s: 40
+notes: >
+  Implement a small config language (CONFL) from a precise spec:
+  sections, includes (relative paths, root-section reset + restore,
+  depth limit 8, cycle detection), ints/bools/strings/raw strings/nested
+  lists, escape set with \xNN validation, comments that respect string
+  context, last-wins and += append semantics (list concat, string
+  concat, typed errors), lazy interpolation against FINAL values with an
+  exactly-formatted cycle error chain, path-conflict detection with
+  exact messages, dumps_flat canonical output, and a frozen CLI wrapper
+  contract. Fixture ships stubs, a runnable public suite (8 tests), and
+  a worked example with exact expected output; grading adds a 24-test
+  hidden conformance suite. Build hygiene: reference implementation
+  passes public+hidden suites and reproduces app.flat byte-for-byte;
+  stub asserted to fail.

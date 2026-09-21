@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: lattice-cli
+version: 2.3.0
+date-released: "2026-02-16"
+authors:
+  - family-names: Bench
+    given-names: Builder

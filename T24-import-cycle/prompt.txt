@@ -1,0 +1,24 @@
+The flowkit package in this workspace is broken: `import flowkit` raises
+an ImportError caused by circular imports that were introduced when
+flowkit/serializers.py was added. Your job:
+
+1. Untangle the imports so that `import flowkit` works AND every
+   submodule also imports cleanly on its own, e.g.
+   `python3 -c "import flowkit.serializers"` — for pipeline, steps,
+   registry, serializers, and the new cli module. Do NOT touch
+   sys.modules or use import hooks; restructure the code properly.
+
+2. Implement the CLI described in docs/CLI.md as flowkit/cli.py,
+   runnable via `python3 -m flowkit.cli`. Follow the error contract
+   exactly (messages and exit codes).
+
+Constraints:
+- The public API is frozen: `from flowkit import Pipeline, Step, build,
+  get_registry, register` must keep working, and all existing behavior
+  (step semantics, describe()/to_json() output shapes) must be preserved.
+- docs/, examples/, and README.md are sha256-guarded; don't modify them.
+
+Verify your work: the import matrix above, the example pipeline
+(`python3 -m flowkit.cli run examples/pipeline.json --input "hello world"`
+must print `>> HELLO WORLD`), and the CLI error cases. The grader runs a
+hidden test suite covering all of this plus edge cases.

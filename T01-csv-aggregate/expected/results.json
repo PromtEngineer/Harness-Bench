@@ -1,0 +1,14 @@
+{
+  "north": {
+    "revenue_usd": 1599604.19,
+    "units": 12421
+  },
+  "south": {
+    "revenue_usd": 1553103.93,
+    "units": 12462
+  },
+  "west": {
+    "revenue_usd": 1520402.73,
+    "units": 12262
+  }
+}

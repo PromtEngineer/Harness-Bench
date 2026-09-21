@@ -1,0 +1,26 @@
+id: T19
+slug: flaky-test-hunt
+tier: hard
+timeout_s: 900
+min_turns_estimate: 28
+checker_runtime_s: 45
+notes: >
+  Three distinct flakiness root causes planted in statlib/, all library bugs
+  (tests are correct and sha256-manifest-guarded, including against added
+  files): (a) labels.unique_labels returns set-iteration order although the
+  docstring promises sorted (PYTHONHASHSEED-dependent); (b) cache.cached_summary
+  uses the fixed path /tmp/statlib_cache.tmp with open(..., "x") and no
+  cleanup, so a leftover file from any previous run breaks the next one;
+  (c) stats.pooled_mean/pooled_variance accumulate floats in set-iteration
+  order, so the exact-float variance assertion differs in the last digits
+  across hash seeds (test literal computed from the contractual sorted-order
+  accumulation; sample values seeded with 190019 span 1e-6..1e6 magnitudes).
+  Checker: manifest guard; 10 suite runs with PYTHONHASHSEED cycling
+  0,1,2,42,99,7,13,21,34,55 (scratch file cleared once before the loop, not
+  between runs); mutation guard reverts each fixed module to the pristine
+  buggy original in a scratch workspace copy (loud failure if the layout
+  diverged) and requires the suite to fail -- m1/m3 tried under seeds 0,1,42
+  (build-verified: on CPython 3.12 every one of the 10 seeds exposes both
+  set-order bugs), m2 with a pre-created scratch file (deterministic).
+  Mutation guard also defeats conftest monkey-patch cheats. Build-verified:
+  buggy cache test passes then fails across two consecutive runs.

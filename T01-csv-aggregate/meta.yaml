@@ -1,0 +1,7 @@
+id: T01
+slug: csv-aggregate
+tier: easy
+timeout_s: 900
+min_turns_estimate: 9
+checker_runtime_s: 5
+notes: Aggregate 9 regional monthly sales CSVs (with quoted comma-containing sku fields) into per-region revenue/units in results.json.

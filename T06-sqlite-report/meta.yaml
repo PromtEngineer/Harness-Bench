@@ -1,0 +1,7 @@
+id: T06
+slug: sqlite-report
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 10
+notes: Answer 5 precisely-defined analytics questions (top customer, MoM growth, per-region medians, co-purchase pair, refund-adjusted revenue) against a seeded SQLite db; exact-match report.json.

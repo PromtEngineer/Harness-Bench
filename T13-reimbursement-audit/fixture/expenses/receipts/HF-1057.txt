@@ -1,0 +1,13 @@
+==================================
+   THE ELM HOUSE — GUEST FOLIO
+==================================
+Folio No   : HF-1057
+Guest      : (corporate account)
+City       : Lyon
+Check-in   : 2026-03-16
+Check-out  : 2026-03-17
+Nights     : 1
+Room rate  : 150.00 EUR per night
+----------------------------------
+TOTAL CHARGED : EUR 150.00
+Payment: corporate card

@@ -1,0 +1,5 @@
+
+PUSH 7
+PRINTI
+POP
+HALT

@@ -1,0 +1,21 @@
+id: T33
+slug: version-solver
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 26
+checker_runtime_s: 20
+notes: >
+  Dependency resolution with a normative chronological-backtracking
+  algorithm (alphabetical package order, highest-version-first,
+  per-decision forbidden sets, constraint undo on backtrack) making the
+  answer unique and exactly comparable. Index (55 packages) contains a
+  diamond forcing web 2.1.0->1.9.0 backtracking, a two-level chain
+  (pipeline->stage->buffer vs root-pinned logger via a shared alloc cap)
+  forcing multi-level undo, an unsolvable left/right pair
+  (brute-force-verified unsolvable at build), an '='-pin scenario, and
+  40 seeded filler packages. Grading: visible sample must be bit-exact;
+  6 hidden requirement sets compared semantically; 120s timeout catches
+  runaway search. Build hygiene: reference locks validated by an
+  independent constraint checker; greedy no-backtracking asserted to
+  FAIL both backtracking scenarios; key resolved versions pinned by
+  asserts.

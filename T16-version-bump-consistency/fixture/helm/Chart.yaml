@@ -1,0 +1,6 @@
+apiVersion: v2
+name: lattice-cli
+description: Helm chart for lattice-cli
+type: application
+version: 2.3.0
+appVersion: "2.3.0"

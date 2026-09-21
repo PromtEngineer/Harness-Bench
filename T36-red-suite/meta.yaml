@@ -1,0 +1,20 @@
+id: T36
+slug: red-suite
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 26
+checker_runtime_s: 25
+notes: >
+  Debugging at suite scale: 40 visible tests across 5 files, 22 red
+  (deterministically) from just 4 root causes — (1) tokenizer regex loses hyphen/apostrophe
+  compounds vs its documented contract, (2) bigrams off-by-one
+  (range(len-2)) drops the final pair, (3) readability formula uses //
+  so both ratios truncate, (4) count_freq mutable-default dict leaks
+  counts across calls (order-dependent failures — the wordfreq tests
+  fail differently in isolation than in the full run, which the prompt
+  hints at). Grading: tests/ byte-guarded, visible suite green, plus an
+  8-test hidden suite on the same code paths with fresh inputs
+  (including a mutable-default probe that passes an explicit dict, and
+  a hyphen case 'pre- and post-war' that over-eager regexes get wrong).
+  Build hygiene: pristine asserted exactly 12 failed/28 passed; fixed
+  asserted green on both suites; pristine asserted red on hidden.

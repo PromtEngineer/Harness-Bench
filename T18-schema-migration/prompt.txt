@@ -1,0 +1,35 @@
+Schema migration task (SQLite, Python 3 stdlib only).
+
+Workspace layout:
+- app/db/app.db     SQLite database in the current v1 schema
+- app/dao.py        data-access functions written against the v1 schema
+- app/schema_v2.md  the exact v2 target schema and migration spec.
+                    READ ONLY -- do not modify (it is sha256-guarded).
+
+Do the following, exactly as specified by app/schema_v2.md:
+
+1. Create app/migrate.py. It will be invoked as
+       python3 migrate.py db/app.db
+   with app/ as the working directory, and must transform the database
+   in place from v1 to v2:
+     - new addresses table, one row per user, carrying the user's v1
+       address columns, is_primary = 1;
+     - users loses street/city/postal_code/country (keeps id/name/email);
+     - orders gains address_id (FK to addresses), backfilled by matching
+       each order's address_snapshot text to its user's address row;
+       address_snapshot itself is kept unchanged;
+     - PRAGMA foreign_key_check must be clean and all row counts preserved.
+   Exit 0 on success, nonzero on any failure (e.g. an unmatched snapshot).
+
+2. Update app/dao.py for v2: get_user_with_address and get_order_shipping
+   must return the exact dict shapes documented in schema_v2.md by joining
+   the new addresses table (shipping via orders.address_id, not the
+   snapshot string). connect() must keep working unchanged.
+
+Notes:
+- The checker restores a PRISTINE copy of the v1 database and runs your
+  migrate.py itself, then verifies FK integrity, row counts, dropped
+  columns, 10 spot-check joins, and runs a hidden pytest suite against
+  your dao.py (imported with the migrated db). Your migration must work
+  from scratch every time, not just once against your local copy.
+- Test your work by running your own queries against the migrated db.

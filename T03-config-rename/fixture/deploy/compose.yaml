@@ -1,0 +1,8 @@
+# Orion application stack
+services:
+  app:
+    image: stellar/app:2.4.1
+    environment:
+      PRODUCT_NAME: "Orion"
+    ports:
+      - "8080:8080"

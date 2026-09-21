@@ -1,0 +1,17 @@
+Implement scheduler.py (workspace root, Python 3 stdlib only): a
+resource-constrained DAG scheduler per SPEC.md.
+
+jobs.json in this workspace has 120 jobs in a layered dependency DAG
+with cpu/mem requirements and a makespan_budget. Your schedule must
+satisfy dependencies and both resource caps at every tick, and finish
+within the budget. Serializing everything blows the budget several
+times over; a real scheduling algorithm (SPEC.md sketches critical-path
+list scheduling) is required.
+
+Validate your own output before finishing: recompute resource usage
+over time from your schedule and check every constraint — the grader
+uses an independent validator, runs your scheduler on jobs.json AND on
+hidden job sets from the same generator, and fails on the first
+violated constraint or busted budget.
+
+SPEC.md and jobs.json are sha256-guarded READ ONLY.

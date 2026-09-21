@@ -1,0 +1,10 @@
+Bistro Meridien
+Porto — table 10
+Receipt #RB-3345
+Date: Mar 19, 2026
+----------------------------
+ Covers: 1
+ Food          22.39
+ Service chg   2.21
+----------------------------
+ TOTAL EUR 24.60

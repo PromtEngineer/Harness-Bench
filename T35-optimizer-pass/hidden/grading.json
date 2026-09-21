@@ -1,0 +1,84 @@
+{
+  "budgets": {
+    "ex1.me": {
+      "ref": 6,
+      "budget": 8,
+      "unopt": 12
+    },
+    "ex2.me": {
+      "ref": 6,
+      "budget": 8,
+      "unopt": 14
+    },
+    "ex3.me": {
+      "ref": 7,
+      "budget": 9,
+      "unopt": 11
+    },
+    "h1-fold-chain.me": {
+      "ref": 6,
+      "budget": 8,
+      "unopt": 22
+    },
+    "h2-neg-div.me": {
+      "ref": 8,
+      "budget": 10,
+      "unopt": 20
+    },
+    "h3-div-zero-preserved.me": {
+      "ref": 17,
+      "budget": 19,
+      "unopt": 23
+    },
+    "h4-identities.me": {
+      "ref": 12,
+      "budget": 14,
+      "unopt": 22
+    },
+    "h5-const-branch-taken.me": {
+      "ref": 10,
+      "budget": 12,
+      "unopt": 18
+    },
+    "h6-dead-stores.me": {
+      "ref": 10,
+      "budget": 12,
+      "unopt": 18
+    },
+    "h7-nested-if.me": {
+      "ref": 20,
+      "budget": 22,
+      "unopt": 26
+    },
+    "h8-mixed.me": {
+      "ref": 23,
+      "budget": 25,
+      "unopt": 33
+    },
+    "h9-cmp-fold.me": {
+      "ref": 8,
+      "budget": 10,
+      "unopt": 17
+    },
+    "h10-runtime-vars.me": {
+      "ref": 23,
+      "budget": 25,
+      "unopt": 29
+    }
+  },
+  "outputs": {
+    "ex1.me": "14\n2\n",
+    "ex2.me": "5\n5\n",
+    "ex3.me": "111\n",
+    "h1-fold-chain.me": "15\n24\n50\n",
+    "h2-neg-div.me": "-3\n-3\n-1\n-7\n",
+    "h3-div-zero-preserved.me": "10\n9\n",
+    "h4-identities.me": "7\n7\n7\n7\n5\n",
+    "h5-const-branch-taken.me": "2\n4\n",
+    "h6-dead-stores.me": "3\n8\n",
+    "h7-nested-if.me": "100\n100\n",
+    "h8-mixed.me": "100\n9\n2\n",
+    "h9-cmp-fold.me": "1\n0\n0\n1\n",
+    "h10-runtime-vars.me": "60\n2\n7\n"
+  }
+}

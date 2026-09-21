@@ -1,0 +1,60 @@
+{
+  "Meridian": {
+    "base_offset_min": 120,
+    "dst": {
+      "delta_min": 60,
+      "start": {
+        "month": 3,
+        "weekday": "fri",
+        "ordinal": "3",
+        "local_time": "02:00"
+      },
+      "end": {
+        "month": 11,
+        "weekday": "sun",
+        "ordinal": "2",
+        "local_time": "03:00"
+      }
+    }
+  },
+  "Zenith": {
+    "base_offset_min": -300,
+    "dst": {
+      "delta_min": 60,
+      "start": {
+        "month": 4,
+        "weekday": "sun",
+        "ordinal": "1",
+        "local_time": "03:00"
+      },
+      "end": {
+        "month": 10,
+        "weekday": "sun",
+        "ordinal": "last",
+        "local_time": "01:00"
+      }
+    }
+  },
+  "Umbra": {
+    "base_offset_min": 345,
+    "dst": null
+  },
+  "Polaris": {
+    "base_offset_min": 0,
+    "dst": {
+      "delta_min": 30,
+      "start": {
+        "month": 5,
+        "weekday": "sat",
+        "ordinal": "2",
+        "local_time": "12:00"
+      },
+      "end": {
+        "month": 9,
+        "weekday": "sun",
+        "ordinal": "1",
+        "local_time": "12:30"
+      }
+    }
+  }
+}

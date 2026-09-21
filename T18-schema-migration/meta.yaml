@@ -1,0 +1,21 @@
+id: T18
+slug: schema-migration
+tier: hard
+timeout_s: 900
+min_turns_estimate: 26
+checker_runtime_s: 15
+notes: >
+  SQLite v1 -> v2 schema migration (seed 180018; 300 users, 900 orders; every
+  order's address_snapshot matches its user's v1 address by construction).
+  Agent must write app/migrate.py (in-place transform: addresses table,
+  users column drops via ALTER TABLE DROP COLUMN, orders.address_id backfill
+  by snapshot matching) and rewrite two dao.py functions to join the new
+  table per app/schema_v2.md. Checker always copies expected/pristine-v1.db
+  over the workspace db before running the agent's migrate.py, so the
+  migration is exercised fresh; then: foreign_key_check clean, row counts
+  (users 300 / orders 900 / addresses 300), users has no address columns,
+  every order joins to an address matching user + snapshot, exactly one
+  primary address per user, 10 spot-check joins vs expected/spotchecks.json,
+  and a hidden pytest dao suite (expected values in expected/dao_expected.json)
+  with the workspace app/ on PYTHONPATH. schema_v2.md is sha256-guarded.
+  Requires SQLite >= 3.35 (ALTER TABLE DROP COLUMN); Ubuntu 24.04 ships 3.45.

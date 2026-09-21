@@ -1,0 +1,10 @@
+*** AIRPORT LINE CARS ***
+RECEIPT
+Ref  : TX-2228
+Date : 18/03/2026
+City : Chicago
+Pickup : Convention Ctr
+Dropoff: Airport
+FARE 63.75
+CURRENCY USD
+Thank you for riding

@@ -1,0 +1,8 @@
+[project]
+name = "stellar-toolkit"
+version = "2.4.1"
+description = "Orion deployment toolkit for Stellar Labs infrastructure"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

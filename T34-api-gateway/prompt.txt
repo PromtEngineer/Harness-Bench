@@ -1,0 +1,21 @@
+Implement the document gateway API described in spec.md as a single
+file server.py in the workspace root (Python 3 stdlib only). spec.md is
+the complete, authoritative contract and is sha256-guarded.
+
+What the grader exercises (all of it, exactly):
+- X-Api-Key auth and the per-key token bucket (capacity 20, 10/s
+  refill, Retry-After rounded up). The grader drives time entirely via
+  the X-Test-Clock header — implement that test-clock hook exactly as
+  specified or every rate-limit assertion will fail.
+- POST with Idempotency-Key: byte-identical replay returns the ORIGINAL
+  response without consuming an id; a different body under the same key
+  is a 422.
+- ETag/If-None-Match 304s, If-Match optimistic concurrency (428 when
+  missing, 409 on version mismatch), DELETE semantics.
+- Cursor pagination with the exact base64 cursor encoding, limit
+  clamping to [1,50], and 400s for malformed limit/cursor.
+- Exact error bodies {"error": "<code>"} and status codes throughout.
+
+Start the server yourself (BENCH_PORT=8123 python3 server.py), curl
+each behavior, and only then finish. The grader starts your server on a
+random free port, runs ~60 assertions, and kills it.

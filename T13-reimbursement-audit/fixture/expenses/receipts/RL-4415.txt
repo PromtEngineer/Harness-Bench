@@ -1,0 +1,8 @@
+NATIONAL RAIL / E-TICKET
+Ticket: RL-4415
+Travel date: 20 Mar 2026
+From: Tech Park   To: Central Station
+City of issue: Paris
+Class: Standard  Coach B Seat 15
+PRICE: EUR 61.00
+Ticket conditions apply.

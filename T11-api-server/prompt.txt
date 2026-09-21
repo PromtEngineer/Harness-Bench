@@ -1,0 +1,11 @@
+Implement the JSON notes API described in spec.md (in this workspace) as a single file server.py in the workspace root, using only the Python 3 standard library.
+
+Read spec.md carefully — it is the authoritative contract. Summary of what the grader does:
+
+- Deletes any notes.json, picks a random free port P, and runs: BENCH_PORT=P python3 server.py
+- Exercises every endpoint with an HTTP client: note creation with sequential ids from 1, GET by id, tag filtering and limit clamping (1..100, non-integer limit → 400), 404 {"error":"not_found"} and 400 {"error":"bad_request"} error bodies, DELETE returning 204 then 404 on repeat, malformed JSON body → 400.
+- Kills the server, starts it again (new port, same directory), and verifies all state — including the id counter — survived via the notes.json persistence file described in spec.md.
+
+Deliverable: server.py only. Make sure it binds 127.0.0.1, uses the BENCH_PORT environment variable (default 8765), keeps running until killed, and writes notes.json in the current working directory after every successful mutation.
+
+Test your server yourself before finishing (start it, curl it, kill it, restart it). The grader gives the server a few seconds to become ready, then fails fast on the first wrong response.

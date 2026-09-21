@@ -1,0 +1,22 @@
+Implement the CONFL configuration language in the confl/ package,
+exactly per SPEC.md (Python 3 stdlib only).
+
+Workspace:
+- SPEC.md               the complete language spec. READ ONLY (guarded).
+- confl/__init__.py     stubs for ConflError, load(), dumps_flat() —
+                        this is where your implementation goes (you may
+                        add more modules under confl/).
+- confl/__main__.py     working CLI wrapper. READ ONLY (guarded).
+- examples/             app.confl + base.confl and the exact expected
+                        output app.flat. READ ONLY (guarded).
+- tests_public/         a starter test suite you can run right away:
+                        python3 -m pytest tests_public/
+
+Suggested order: scalars and sections -> lists -> strings with escapes
+-> last-wins and += -> includes -> interpolation (final values, exact
+cycle message format!) -> path conflicts -> dumps_flat/CLI contract.
+
+The grader runs the public suite PLUS a much larger hidden conformance
+suite covering every paragraph of SPEC.md, including exact error
+message formats where the spec specifies them (interpolation cycles,
+path conflicts). Read the spec twice; the corner cases are the task.

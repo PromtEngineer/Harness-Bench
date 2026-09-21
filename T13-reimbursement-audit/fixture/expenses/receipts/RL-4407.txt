@@ -1,0 +1,8 @@
+NATIONAL RAIL / E-TICKET
+Ticket: RL-4407
+Travel date: 13 Mar 2026
+From: Old Town   To: Hotel
+City of issue: London
+Class: Standard  Coach B Seat 14
+PRICE: GBP 34.00
+Ticket conditions apply.

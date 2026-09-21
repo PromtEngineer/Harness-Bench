@@ -1,0 +1,17 @@
+id: T15
+slug: migrate-callbacks
+tier: hard
+timeout_s: 900
+min_turns_estimate: 26
+checker_runtime_s: 10
+notes: >
+  Callback-to-asyncio migration of a 5-module pipeline library (source,
+  transform, sink, pipeline, errors) behind a sync public entrypoint
+  run_pipeline(config) in api.py. 10 behavior-only tests (verified green on
+  the pristine callback fixture) are sha256-guarded and must stay green
+  after migration; the checker also rejects new .py files under tests/.
+  Structural asserts: case-insensitive grep for on_ok/on_err/callback in
+  taskflow/ must be empty, >= 6 `async def`, >= 3 modules importing
+  asyncio; fan-out must survive behaviorally (order-preserving gather in
+  the reference solution). Reference solution replaces
+  source/transform/sink/pipeline/api with coroutine versions.

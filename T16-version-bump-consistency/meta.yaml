@@ -1,0 +1,23 @@
+id: T16
+slug: version-bump-consistency
+tier: hard
+timeout_s: 900
+min_turns_estimate: 27
+checker_runtime_s: 5
+notes: >
+  Real git repo (fixture ships .git) of fictional "lattice-cli" at v2.3.0
+  with an annotated v2.3.0 tag 15 commits back; the 15 post-tag commits
+  (fixed dates 2026-04-06..2026-04-20, author/committer bench@local) use
+  conventional messages: 5x feat:, 6x fix:, 4x chore:/docs:. The literal
+  string 2.3.0 appears in exactly 10 files (VERSION, pyproject.toml,
+  __init__.py, README badge+install, docs/conf.py version+release,
+  CITATION.cff, Dockerfile LABEL, deploy/compose.yaml image tag,
+  helm/Chart.yaml version+appVersion, release.yml RELEASE_VERSION) plus
+  CHANGELOG.md history. Agent must bump all 10 to 3.0.0 and prepend a
+  ## 3.0.0 changelog section with Features/Fixes bullets. Checker asserts
+  history intact (exactly 15 bench@local commits after the tag — this is
+  the unmodifiable-fixture guard), all 10 locations, no 2.3.0 remnants
+  outside CHANGELOG.md, and validates the changelog live against
+  git log v2.3.0..HEAD in the workspace. Rebuild: bash gen/build_repo.sh
+  (commit hashes will differ but all validated content is date/author
+  pinned).

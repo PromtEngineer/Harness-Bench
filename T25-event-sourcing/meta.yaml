@@ -1,0 +1,21 @@
+id: T25
+slug: event-sourcing
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 30
+checker_runtime_s: 10
+notes: >
+  Reduce ~6000 shuffled warehouse events (seed 250025) to final state.
+  Hostile ingredients: file order is meaningless (apply by seq; builder
+  asserts file-order reduction diverges), 170 exact duplicate lines to
+  skip, mixed v1 whole-unit / v2 milli-unit schemas, absolute `adjust`
+  events whose reversal must restore the pre-adjust value (requires
+  effect/history tracking), 40 planted adjust-reversals,
+  reversal-of-reversal chains (re-apply the original effect), and three
+  distinct dangling-reversal categories (unknown id, target later in seq
+  order, target never applied). Stats: events_total/duplicates/applied/
+  dangling_reversals/negative_dip_events (>=0 -> <0 transitions).
+  Deliverable state.json, semantic exact match with typed integers.
+  Builder hygiene: reducer verified against two hand-computed mini-cases
+  (incl. rev-of-rev of an adjust and of a transfer) and naive variants
+  (ignore reversals, file-order apply) asserted to diverge.

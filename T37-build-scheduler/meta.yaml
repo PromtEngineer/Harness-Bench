@@ -1,0 +1,20 @@
+id: T37
+slug: build-scheduler
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 26
+checker_runtime_s: 20
+notes: >
+  Algorithmic scheduling with a quality bar: 120-job layered DAG
+  (deps into the previous layer only), cpu cap 8 / mem cap 16, integer
+  ticks, half-open run intervals. The deliverable is a GENERAL
+  scheduler.py; grading runs it on the visible set plus two hidden sets
+  from the same generator (different seeds), validating with an
+  independent event-sweep validator: exact job cover, integer
+  non-negative starts, dep finish-before-start, both caps at every
+  tick, and makespan <= budget where budget = ceil(1.25 x reference
+  critical-path list scheduler). Serial scheduling exceeds the budget
+  ~4-5x (asserted at build); the validator is asserted to catch a
+  resource-blind schedule. SPEC.md discloses the recommended heuristic
+  so the task grades scheduling implementation, not algorithm
+  archaeology.

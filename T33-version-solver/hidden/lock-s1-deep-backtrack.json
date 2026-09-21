@@ -1,0 +1,10 @@
+{
+  "resolved": {
+    "alloc": "1.4.0",
+    "buffer": "1.6.0",
+    "logger": "1.1.0",
+    "pipeline": "2.5.0",
+    "stage": "1.8.0"
+  },
+  "solvable": true
+}

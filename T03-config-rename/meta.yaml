@@ -1,0 +1,7 @@
+id: T03
+slug: config-rename
+tier: easy
+timeout_s: 900
+min_turns_estimate: 10
+checker_runtime_s: 10
+notes: Rename product Orion->Nova across 6 user-facing files while leaving sha256-guarded vendor/ and tests/ (which already expect Nova) untouched; pytest must go green.

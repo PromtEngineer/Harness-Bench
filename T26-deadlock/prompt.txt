@@ -1,0 +1,23 @@
+The bankcore library in this workspace has two concurrency defects
+described in README.md:
+
+1. `python3 stress.py` deadlocks (deterministically — it forces the bad
+   interleaving through the debug_hook instrumentation). Fix
+   AccountBank.transfer so opposite concurrent transfers cannot deadlock.
+2. AccountBank.audit must be deadlock-free against concurrent transfers
+   AND must never return a torn snapshot (the snapshot's total must
+   always equal the true total, even while a transfer is between its
+   debit and credit).
+
+Fix bankcore/accounts.py. Hard constraints (see README.md):
+- Public API frozen; keep real locking (the grader hammers the bank from
+  8 threads and compares the final state against a serial replay while
+  an auditor thread continuously checks snapshot consistency).
+- Keep the debug_hook attribute and BOTH call points exactly as
+  documented ("transfer-first-lock" after the first lock acquisition,
+  "transfer-mid" between debit and credit) — the grader drives them.
+- stress.py and README.md are sha256-guarded; do not modify them.
+
+When done, `python3 stress.py` must print OK. The grader additionally
+forces an audit to run against a transfer paused at "transfer-mid" and
+fails if the audit either deadlocks or returns an inconsistent sum.

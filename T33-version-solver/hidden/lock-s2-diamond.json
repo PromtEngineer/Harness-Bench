@@ -1,0 +1,9 @@
+{
+  "resolved": {
+    "core": "2.4.0",
+    "netio": "1.1.0",
+    "orm": "1.4.0",
+    "web": "1.9.0"
+  },
+  "solvable": true
+}

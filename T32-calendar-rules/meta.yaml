@@ -1,0 +1,21 @@
+id: T32
+slug: calendar-rules
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 28
+checker_runtime_s: 30
+notes: >
+  Civil-time scheduler over four FICTIONAL zones (hermetic: no tzdata) —
+  Meridian (+2h, 1h DST, US-style rules), Zenith (-5h, 1h DST,
+  last-sunday end), Umbra (+5:45, no DST), Polaris (UTC base, 30-MINUTE
+  DST delta). Rule grammar: daily / weekly / monthly-by-Nth-weekday
+  (incl. 'last') / monthly-by-day-number (short months skip). Graded
+  policies: DST start rules in standard wall time but end rules in DST
+  wall time, spring-forward gap -> transition instant, fall-back
+  ambiguity -> earlier (DST) instant, strictly-after start filter.
+  RULES.md ships four worked examples (incl. both transition policies
+  and the 30-min gap); grading runs 22 hidden CLI vectors concentrated
+  on transition weeks in all four zones plus year boundaries and
+  Feb/short-month ordinals. Build hygiene: six vector families
+  hand-computed and asserted against the reference before vector
+  generation.

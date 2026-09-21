@@ -1,0 +1,3 @@
+ex1.me: optimized op-count budget 8 (unoptimized: 12)
+ex2.me: optimized op-count budget 8 (unoptimized: 14)
+ex3.me: optimized op-count budget 9 (unoptimized: 11)

@@ -1,0 +1,25 @@
+Reconcile inventory data from six warehouse exports into a single CSV report.
+
+The workspace contains:
+- warehouse/a/inventory.csv  — comma CSV, header: sku,qty,unit_cost,currency,updated (dates YYYY-MM-DD)
+- warehouse/b/stock.csv      — comma CSV with different column names/order, header: item_code,cost_per_unit,count,ccy,as_of (item_code is the SKU, count is the quantity, cost_per_unit is the unit cost, ccy is the currency)
+- warehouse/c/inventory.tsv  — TAB-separated, header: sku,qty,unit_cost,currency,updated
+- warehouse/d/inventory.jsonl — JSON Lines; each line is an object with keys sku, qty, unit_cost, currency, updated
+- warehouse/e/inventory.csv  — SEMICOLON-separated CSV; unit_cost uses a decimal COMMA (e.g. "315,69" means 315.69); dates are DD.MM.YYYY
+- warehouse/f/inventory.csv  — comma CSV; qty and unit_cost may contain thousands separators inside quoted fields (e.g. "6,135" means 6135 and "3,230.78" means 3230.78); dates are MM/DD/YYYY
+- rates.json — {"EUR_USD": <rate>}: 1 EUR = <rate> USD
+
+Rules:
+- Currencies are only USD and EUR. Convert EUR unit costs to USD by multiplying by the EUR_USD rate from rates.json.
+- The same SKU can appear in several warehouses, and occasionally more than once inside the same warehouse file. Every row counts.
+- The "updated"/"as_of" date columns are informational only; they do not affect the output.
+
+Deliverable: write reconciled.csv in the workspace root with:
+- Header line exactly: sku,total_units,total_value_usd,warehouses
+- One row per unique SKU, sorted ascending by sku (plain lexicographic string sort).
+- total_units: integer sum of all quantities for that SKU across all rows in all warehouses (no decimals, no separators).
+- total_value_usd: sum over every row of qty * unit_cost_in_USD (EUR converted as above), rounded to exactly 2 decimal places and printed with exactly 2 decimals (e.g. 1234.50). No thousands separators, no currency symbol.
+- warehouses: the warehouse letters (a-f) in which the SKU appears at least once, each letter at most once, sorted alphabetically and concatenated with no separator (e.g. "abd").
+- Plain ASCII, LF line endings, no extra columns, no trailing blank lines.
+
+Do not modify the input files.

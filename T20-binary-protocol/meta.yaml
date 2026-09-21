@@ -1,0 +1,23 @@
+id: T20
+slug: binary-protocol
+tier: hard
+timeout_s: 900
+min_turns_estimate: 26
+checker_runtime_s: 10
+notes: >
+  Decode a fictional SLPK v2 binary log (seed 200020): 10-byte header
+  (magic + u16 LE count), 500 records (u32 LE id, u8 flags, unsigned
+  LEB128 payload length 5..599 so multi-byte varints occur, payload,
+  u32 LE CRC-32, u16 LE tag id), footer string table with 12 shuffled
+  entries and non-contiguous tag ids. Planted: exactly 37 records with
+  the deleted flag and exactly 2 disjoint non-deleted records whose
+  stored CRC is XORed with 0x5A5A5A5A. Deliverable summary.json
+  (record_count/active_count/deleted_count/crc_failures/
+  total_payload_bytes/top5_tags with fully specified ordering).
+  Build hygiene: gen/generate.py emits the file plus a ground-truth
+  summary from generation-time bookkeeping; gen/decode_ref.py is a
+  separately written spec-based decoder; the build cross-checks the two
+  byte-for-byte before publishing expected/summary.json. Checker
+  sha256-guards format.md and data/records.slpk, type-checks the JSON
+  (ints, 5 [name,count] pairs), then compares semantically against
+  expected/summary.json.

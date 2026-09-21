@@ -1,0 +1,19 @@
+The textstats library in this workspace has a bug. Running the test suite
+from the workspace root with:
+
+    python3 -m pytest -q
+
+currently reports 5 failing tests out of 12.
+
+Task: find and fix the bug in the library code so that all 12 tests pass.
+
+Rules:
+- Do NOT modify, delete, or add any file under tests/. The checker verifies
+  tests/ byte-for-byte; any change there fails the task.
+- The bug is in the library implementation (textstats/), not in the tests.
+- Do not add new dependencies; the suite must pass with
+  `python3 -m pytest -q` run from the workspace root using only the Python
+  standard library plus pytest.
+
+Deliverable: the fixed library in place. Success = a fully green run of
+`python3 -m pytest -q` (12 passed).

@@ -1,0 +1,20 @@
+Your workspace contains:
+- spec.md — a precise specification of a token-bucket rate limiter class.
+- examples.py — four runnable usage examples (run them with: python3 examples.py).
+
+Task: implement the specified class in a NEW file at the workspace root:
+
+    ratelimiter.py
+
+Requirements:
+- ratelimiter.py must define class TokenBucketRateLimiter with the exact
+  constructor and method signatures given in spec.md.
+- Python 3 standard library only; no third-party dependencies.
+- `python3 examples.py` must run to completion without AssertionError.
+- Your implementation is graded by a hidden pytest suite that exercises every
+  rule in spec.md (burst behavior, fractional refill, per-key isolation,
+  exact boundaries, backwards-time errors, constructor validation, large time
+  jumps). Read spec.md carefully — every sentence in it is testable.
+
+Deliverable: ratelimiter.py at the workspace root. Do not modify spec.md or
+examples.py.

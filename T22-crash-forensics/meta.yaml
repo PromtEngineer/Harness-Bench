@@ -1,0 +1,22 @@
+id: T22
+slug: crash-forensics
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 30
+checker_runtime_s: 25
+notes: >
+  Debug a 5-module settlement pipeline with THREE planted bugs of which the
+  shipped crash.log only reveals the first: (1) parse.py KeyError on the
+  optional coupon field (crashes replay.py at order O0037), (2) pricing
+  uses float multiply + int() truncation instead of the README-mandated
+  integer round-half-up (25 planted lines land on exact .5 remainders:
+  qty=2, odd price_cents, SAVE25), (3) batch.py range(0, len-BATCH, BATCH)
+  silently drops the final settlement batch (feed is exactly 500 = 10x50
+  orders, so 50 orders vanish). The ops note in crash.log tells the agent
+  completed runs were also wrong, forcing an audit against README.md rather
+  than a one-line crash fix. Checker: sha256-guards replay.py/README/
+  crash.log/data, reruns replay.py fresh, semantically compares report.json
+  to a reference built from an independent integer-arithmetic
+  implementation, then runs hidden pytest edge cases (missing coupon,
+  unknown coupon, .5 boundaries, exact-multiple and partial-tail batching).
+  Builder asserts truncation vs half-up genuinely diverges on this feed.

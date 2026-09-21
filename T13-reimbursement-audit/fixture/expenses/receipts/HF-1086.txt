@@ -1,0 +1,13 @@
+==================================
+   THE ELM HOUSE — GUEST FOLIO
+==================================
+Folio No   : HF-1086
+Guest      : (corporate account)
+City       : Berlin
+Check-in   : 2026-03-16
+Check-out  : 2026-03-17
+Nights     : 1
+Room rate  : 166.67 EUR per night
+----------------------------------
+TOTAL CHARGED : EUR 166.67
+Payment: corporate card

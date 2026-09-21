@@ -1,0 +1,31 @@
+Performance fix task.
+
+Your workspace contains:
+- events.csv   ~80,000 rows; columns: event_id,user,tags (tags pipe-separated).
+               READ ONLY -- you must not modify this file in any way.
+- report.py    computes tag co-occurrence statistics over events.csv and
+               writes output.json into the workspace root.
+
+Problem: `python3 report.py` (run from the workspace root) currently takes far
+longer than two minutes because it does a quadratic all-pairs scan over every
+pair of events. Running it to completion on the full file is not practical.
+
+Your task: optimize report.py so that
+
+1. `python3 report.py` run from the workspace root finishes in UNDER 5 SECONDS
+   of wall time (the checker deletes output.json, reruns the script under a
+   30-second hard timeout, and measures the wall time), and
+2. it writes an output.json that is BYTE-IDENTICAL to what the current slow
+   implementation would produce on events.csv: same counting semantics, same
+   ordering and tiebreaks, same JSON serialization. The docstring at the top of
+   report.py pins down the exact semantics and the exact output format --
+   preserve both, and keep the existing serialization code
+   (json.dumps(..., indent=2, sort_keys=True) plus trailing newline), and
+3. events.csv is untouched (it is sha256-guarded by the checker).
+
+The same statistics are computable in a single pass over the file. Verify your
+optimized version against the original implementation on a small subset of the
+rows (e.g. the first few hundred) before trusting it on the full file.
+
+Deliverable: the modified report.py in place. Do not rename files; output must
+be written to output.json in the workspace root.

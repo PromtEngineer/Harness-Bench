@@ -1,0 +1,8 @@
+GENERIC EXPENSE VOUCHER
+------------------------------
+Voucher ID: EV-7312
+Issued: 2026.03.13
+Location: Madrid
+Description: ground transport / misc (taxi)
+Amount due: 18.50 EUR
+Approved by: ops-desk

@@ -1,0 +1,27 @@
+Incident investigation.
+
+The file logs/app.log (~40,000 lines, ~5 MB — too large to read in one go;
+use search/filter tools) contains interleaved application logs from the
+services web, auth, checkout, payments, and inventory. Lines carry
+space-separated key=value fields such as request_id=..., path=...,
+status=..., upstream=..., error="...".
+
+Exactly one request_id experienced a repeated checkout failure: it has 3 or
+more log lines with status=500 on path=/api/checkout (the exact path, not a
+sub-path), all caused by timeouts from a single upstream service (the
+upstream= field on those lines). Every other 500 in the log is either
+isolated or occurs at most twice for any given request_id on that path — do
+not report those.
+
+Deliverable: write a file named answer.json in the workspace root (the
+directory that contains logs/) with exactly this structure:
+
+{"request_id": "<the request_id value, exactly as it appears in the log>", "upstream_service": "<the upstream= value on those failing lines, exactly as it appears>", "error_count": <integer>}
+
+where error_count is the number of log lines with status=500 and
+path=/api/checkout for that request_id.
+
+Requirements:
+- Valid JSON object with exactly the three keys shown above.
+- error_count is a JSON integer (not a string).
+- Do not modify logs/app.log.

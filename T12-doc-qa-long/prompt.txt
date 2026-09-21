@@ -1,0 +1,11 @@
+The workspace contains docs/protocol-spec.md — the full specification of the fictional "LatticeSync v3.2" synchronization protocol — and questions.md with 8 precise questions about it.
+
+Answer all 8 questions using only the information in docs/protocol-spec.md. The document is long; read the sections relevant to each question carefully — several constants and events appear in more than one place with different roles, and only the spec text disambiguates them.
+
+Deliverable: write answers.json in the workspace root. It must be a single JSON object with exactly the keys "q1" through "q8" and no others. Each question in questions.md states the exact required value type and format (JSON integer, JSON string, or JSON array of two integers) — follow them exactly:
+- integers must be JSON numbers (not strings, not floats),
+- state names must be spelled exactly as in the spec (UPPERCASE),
+- version strings must match exactly ("X.Y.Z"),
+- two-element arrays must have the elements in exactly the order the question states.
+
+Grading is an exact match of the parsed JSON values, so double-check each answer against the document before writing the file.

@@ -1,0 +1,21 @@
+id: T17
+slug: perf-fix
+tier: hard
+timeout_s: 900
+min_turns_estimate: 25
+checker_runtime_s: 20
+notes: >
+  Optimize an O(n^2) all-pairs tag co-occurrence report (80k events, 150 users,
+  300-tag vocabulary, seed 170017) to run in under 5 seconds while producing
+  byte-identical output.json. The naive fixture scans all ~3.2e9 event pairs
+  (extrapolated runtime well over 120s; ~1h-class on typical hardware), so the
+  agent must derive the per-user counting identity C_a*C_b - B_ab rather than
+  brute-force once and cache. events.csv is sha256-guarded; the checker deletes
+  output.json, reruns report.py under a 30s hard timeout with a <5.0s wall-time
+  budget (measured around a python subprocess for portability), then
+  byte-compares against expected/output.json. expected/output.json was produced
+  by the reference solution and the naive fixture implementation was verified
+  byte-identical to the reference on a 1500-row subsample at build time
+  (the two computations are also provably equivalent). Turn budget: read
+  prompt/report.py/CSV, reason about the identity, rewrite compute(), build a
+  subsample, run naive + fast on it, diff, run full, time it, iterate.

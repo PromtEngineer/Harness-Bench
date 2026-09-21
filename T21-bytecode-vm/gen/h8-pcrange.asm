@@ -1,0 +1,4 @@
+
+PUSH 4
+PRINTI
+JMP 4096

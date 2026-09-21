@@ -1,0 +1,24 @@
+The nightly settlement pipeline in this workspace is broken. Last night's
+run crashed — the ops capture is in crash.log. Your job is to get
+`python3 replay.py` running AND producing numbers that are correct per the
+rules in README.md.
+
+Important context from the ops note in crash.log: even before this crash,
+finance flagged that completed runs produced suspect totals. The crash is
+not the only defect in this pipeline. Audit the orderflow modules against
+README.md (the authoritative contract) and fix everything you find.
+
+Rules:
+- Do not modify replay.py, README.md, crash.log, or anything under data/
+  (all sha256-guarded). Fix the pipeline inside the orderflow/ package.
+- Keep the module layout and function names/signatures: the grader imports
+  orderflow.parse.parse_order, orderflow.pricing.line_total_cents,
+  orderflow.pricing.discount_pct, orderflow.batch.batches (and BATCH),
+  orderflow.report.build_report.
+- All pricing must be integer arithmetic (README.md, "Pricing").
+- When you are done, `python3 replay.py` must succeed and report.json must
+  be exactly right for the full feed.
+
+The grader reruns replay.py from scratch, verifies report.json, and runs
+additional hidden unit tests against the modules listed above (edge cases
+for parsing, rounding boundaries, and batching).

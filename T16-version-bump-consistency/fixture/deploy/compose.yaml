@@ -1,0 +1,4 @@
+services:
+  lattice:
+    image: lattice/lattice-cli:2.3.0
+    restart: unless-stopped

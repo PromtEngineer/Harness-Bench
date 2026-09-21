@@ -1,0 +1,23 @@
+id: T39
+slug: spreadsheet-calc
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 34
+checker_runtime_s: 40
+notes: >
+  Formula-graph evaluator: integer cells, C-style truncating / and %,
+  comparisons, SUM/MIN/MAX/COUNT over rectangles (empty positions
+  skipped; COUNT counts without evaluating so error cells count and
+  never propagate), three error values with severity #CYCLE! > #REF! >
+  #DIV/0!, and LAZY IF whose untaken branch never evaluates — so a
+  cycle or missing ref in the untaken branch is harmless while an
+  error in the condition propagates. Cycles detected dynamically
+  through actually-evaluated references; multiplying an error by zero
+  does not rescue it. Output byte-compared, sorted (row, bijective
+  column index) so AA sorts after Z. Visible sample (24 cells) shows
+  every sharp edge with its exact expected output; hidden sheets: range
+  matrix, error-precedence matrix, cycle/laziness matrix (mutual-IF
+  cycles, self-IF, untaken-branch rescues), a 5000-cell chain breaking
+  the default recursion limit, a negative div/mod matrix, and a 1500-
+  cell seeded mixed sheet with planted cycle clusters. Build hygiene:
+  35+ hand-computed cell assertions across sample and hidden sheets.

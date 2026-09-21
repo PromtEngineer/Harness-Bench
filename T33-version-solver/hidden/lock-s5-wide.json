@@ -1,0 +1,17 @@
+{
+  "resolved": {
+    "alloc": "1.4.0",
+    "buffer": "1.6.0",
+    "cli": "1.0.0",
+    "core": "2.4.0",
+    "libe04": "2.3.0",
+    "logger": "1.1.0",
+    "netio": "1.1.0",
+    "orm": "1.4.0",
+    "parsekit": "1.4.0",
+    "pipeline": "2.5.0",
+    "stage": "1.8.0",
+    "web": "1.9.0"
+  },
+  "solvable": true
+}

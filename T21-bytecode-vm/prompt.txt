@@ -1,0 +1,28 @@
+Implement a virtual machine for the SVM-1 bytecode format.
+
+The workspace contains:
+- SPEC.md                      the complete SVM-1 specification (READ ONLY,
+                               sha256-guarded)
+- programs/sample1.svm ...     three sample programs (READ ONLY, guarded)
+- programs/sample1.asm ...     their assembly listings, for orientation
+- programs/expected/*.out      exact expected output for each sample
+
+Deliverable: a file vm.py in the workspace root, runnable as
+
+    python3 vm.py <program.svm>
+
+using only the Python 3 standard library. It must load the program file,
+execute it per SPEC.md, write program output to stdout, and use the exit
+codes and the exact `VM ERROR: <reason>` contract from SPEC.md.
+
+The expected/*.out files show the grader's format: the program's stdout,
+then a final line `EXIT=<code>` with the process exit code. Verify your VM
+reproduces all three samples byte-for-byte, including exit codes:
+
+    python3 vm.py programs/sample1.svm; echo "EXIT=$?"
+
+The grader runs your VM against additional hidden programs that exercise
+every opcode and every error path. Pay close attention to the integer
+semantics section of the spec: signed 32-bit wraparound and the exact
+DIV/MOD truncation rules. Get the sample programs passing first, then
+re-read the spec for edge cases your implementation might miss.

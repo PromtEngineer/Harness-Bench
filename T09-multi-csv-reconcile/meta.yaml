@@ -1,0 +1,7 @@
+id: T09
+slug: multi-csv-reconcile
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 5
+notes: Merge six differently-formatted warehouse inventory files (CSV/TSV/JSONL, EU decimals, thousands separators) into one currency-converted reconciled.csv; byte-compared against a generator-derived expected file.

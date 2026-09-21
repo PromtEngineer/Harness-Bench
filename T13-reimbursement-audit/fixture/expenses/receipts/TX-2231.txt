@@ -1,0 +1,10 @@
+*** BLUE STAR CABS ***
+RECEIPT
+Ref  : TX-2231
+Date : 13/03/2026
+City : Paris
+Pickup : Old Town
+Dropoff: Hotel
+FARE 26.40
+CURRENCY EUR
+Thank you for riding

@@ -1,0 +1,7 @@
+id: T04
+slug: log-extract
+tier: easy
+timeout_s: 900
+min_turns_estimate: 8
+checker_runtime_s: 5
+notes: Find the single request_id with 3+ checkout 500s (all payments-gateway timeouts) in a ~5MB/40k-line log full of planted near-misses; write answer.json.

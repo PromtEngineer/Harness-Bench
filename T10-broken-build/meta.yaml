@@ -1,0 +1,7 @@
+id: T10
+slug: broken-build
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 60
+notes: Repair three layered offline build breaks in a src-layout package (TOML syntax error, wrong setuptools package mapping, circular import); graded by a fresh-venv offline editable install plus sha256-guarded pytest run.

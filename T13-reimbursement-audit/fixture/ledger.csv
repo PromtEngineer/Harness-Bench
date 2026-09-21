@@ -1,0 +1,41 @@
+claim_id,receipt_file,employee,city,date,category,claimed_usd,travel_day_flag
+C001,expenses/receipts/RB-3307.txt,a.kumar,Paris,2026-03-09,meals,44.50,no
+C002,expenses/receipts/RB-3313.txt,j.smith,Madrid,2026-03-15,meals,32.40,yes
+C003,,m.garcia,London,2026-03-10,meals,42.75,no
+C004,expenses/receipts/HF-1041.txt,l.chen,Berlin,2026-03-09,hotel,170.64,no
+C005,expenses/receipts/RB-3321.txt,t.novak,Berlin,2026-03-14,meals,35.64,no
+C006,expenses/receipts/TX-2207.txt,s.osei,New York,2026-03-10,taxi,23.40,no
+C007,expenses/receipts/RB-3330.txt,a.kumar,Paris,2026-03-12,meals,62.76,no
+C008,expenses/receipts/RL-4407.txt,j.smith,London,2026-03-13,rail,42.84,no
+C009,expenses/receipts/TX-2215.txt,m.garcia,London,2026-03-09,taxi,59.22,no
+C010,expenses/receipts/HF-1049.txt,l.chen,New York,2026-03-11,hotel,210.00,no
+C011,,t.novak,New York,2026-03-11,taxi,31.00,no
+C012,expenses/receipts/RB-3334.txt,s.osei,Chicago,2026-03-12,meals,54.75,no
+C013,expenses/receipts/RB-3337.txt,a.kumar,Berlin,2026-03-11,meals,69.12,no
+C014,expenses/receipts/EV-7303.txt,j.smith,Lyon,2026-03-16,rail,31.21,no
+C015,expenses/receipts/EV-7312.txt,m.garcia,Madrid,2026-03-13,taxi,19.98,no
+C016,expenses/receipts/HF-1057.txt,l.chen,Lyon,2026-03-16,hotel,162.00,no
+C017,expenses/receipts/RB-3340.txt,t.novak,London,2026-03-17,meals,59.60,no
+C018,expenses/receipts/HF-1066.txt,s.osei,Zurich,2026-03-18,hotel,221.40,no
+C019,expenses/receipts/RL-4408.txt,a.kumar,Manchester,2026-03-17,rail,70.69,no
+C020,expenses/receipts/TX-2218.txt,j.smith,Berlin,2026-03-12,taxi,23.49,no
+C021,,m.garcia,Porto,2026-03-18,taxi,19.50,no
+C022,expenses/receipts/RB-3345.txt,l.chen,Porto,2026-03-19,meals,26.57,no
+C023,expenses/receipts/RB-3353.txt,t.novak,Austin,2026-03-22,meals,27.10,no
+C024,expenses/receipts/HF-1071.txt,s.osei,Manchester,2026-03-19,hotel,166.32,no
+C025,expenses/receipts/TX-2224.txt,a.kumar,Austin,2026-03-20,taxi,50.00,no
+C026,expenses/receipts/RL-4415.txt,j.smith,Paris,2026-03-20,rail,65.88,no
+C027,expenses/receipts/TX-2228.txt,m.garcia,Chicago,2026-03-18,taxi,63.75,no
+C028,expenses/receipts/RB-3359.txt,l.chen,Leeds,2026-03-16,meals,28.22,no
+C029,expenses/receipts/HF-1078.txt,t.novak,Porto,2026-03-17,hotel,127.44,no
+C030,expenses/receipts/HF-1086.txt,s.osei,Berlin,2026-03-16,hotel,180.00,no
+C031,expenses/receipts/RB-3368.txt,a.kumar,Zurich,2026-03-19,meals,89.10,no
+C032,expenses/receipts/EV-7320.txt,j.smith,Leeds,2026-03-20,rail,24.95,no
+C033,expenses/receipts/TX-2231.txt,m.garcia,Paris,2026-03-13,taxi,28.51,no
+C034,expenses/receipts/RB-3369.txt,l.chen,New York,2026-03-21,meals,44.00,yes
+C035,expenses/receipts/HF-1088.txt,t.novak,London,2026-03-17,hotel,529.20,no
+C036,expenses/receipts/RB-3376.txt,s.osei,Manchester,2026-03-18,meals,50.27,no
+C037,expenses/receipts/EV-7323.txt,a.kumar,Zurich,2026-03-19,taxi,35.86,no
+C038,expenses/receipts/RB-3381.txt,j.smith,New York,2026-03-16,meals,80.00,no
+C039,expenses/receipts/HF-1097.txt,m.garcia,Chicago,2026-03-17,hotel,175.00,no
+C040,expenses/receipts/RL-4420.txt,l.chen,London,2026-03-18,rail,70.56,no

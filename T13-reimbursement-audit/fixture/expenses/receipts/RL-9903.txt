@@ -1,0 +1,8 @@
+NATIONAL RAIL / E-TICKET
+Ticket: RL-9903
+Travel date: 13 Mar 2026
+From: Central Station   To: Old Town
+City of issue: Berlin
+Class: Standard  Coach E Seat 33
+PRICE: EUR 22.00
+Ticket conditions apply.

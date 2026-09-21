@@ -1,0 +1,13 @@
+==================================
+   HOTEL ANKER — GUEST FOLIO
+==================================
+Folio No   : HF-1066
+Guest      : (corporate account)
+City       : Zurich
+Check-in   : 2026-03-18
+Check-out  : 2026-03-19
+Nights     : 1
+Room rate  : 205.00 EUR per night
+----------------------------------
+TOTAL CHARGED : EUR 205.00
+Payment: corporate card

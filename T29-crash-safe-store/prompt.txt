@@ -1,0 +1,17 @@
+Implement a crash-safe key-value store as kvstore.py in the workspace
+root, per SPEC.md (Python 3 stdlib only, single process, no network).
+
+This is a DURABILITY task, not a data-structures task. The grader will:
+- drive your store over stdin/stdout with the exact line protocol in
+  SPEC.md (responses must be flushed per line),
+- SIGKILL it repeatedly — immediately after acknowledged writes and in
+  the middle of a write — and restart it against the same kvdata/,
+- append garbage bytes to your most recently modified data file after
+  one crash to simulate a torn write, then restart again,
+- verify after every restart that ALL acknowledged ops survived, that
+  DUMPALL output is sorted, and that a 60KB value round-trips.
+
+Design accordingly: frame and checksum whatever you write, make the
+data durable BEFORE replying OK (flush + os.fsync), and make recovery
+stop cleanly at a corrupt tail. Test your own recovery path with
+kill -9 before you finish. SPEC.md and README.md are sha256-guarded.

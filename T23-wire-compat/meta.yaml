@@ -1,0 +1,20 @@
+id: T23
+slug: wire-compat
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 28
+checker_runtime_s: 10
+notes: >
+  Backward-compatible protocol evolution: the fixture ships a working
+  TLVP/1 TLV codec plus 7 golden transcripts (incl. unicode node names and
+  a 200-byte payload); CHANGES.md specifies TLVP/2 (flags-bit framing with
+  u32 stream_id, CRC-32 u32 trailer replacing the u16 mod-65521 sum,
+  0xFF-escaped extended TLV lengths with the 254/255 boundary, nested
+  BATCH frames carrying complete inner v2 DATA frames, silent unknown-TLV
+  skipping in v2 while v1 stays strict, reserved-flag rejection). Grading
+  replays goldens byte-exact through encode(version=1) AND default encode,
+  round-trips 8 hidden v2 vectors (incl. both extended-length boundary
+  sides and an empty batch), 5 mangled/special frames, and an interleaved
+  v1/v2 stream. Builder hygiene: the v1 fixture impl and v2 reference impl
+  are cross-checked byte-for-byte on every golden; the pristine fixture is
+  asserted to FAIL the vector runner and the reference to PASS it.

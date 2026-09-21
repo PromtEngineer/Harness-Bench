@@ -1,0 +1,13 @@
+==================================
+   GRAND MERIDIAN — GUEST FOLIO
+==================================
+Folio No   : HF-1078
+Guest      : (corporate account)
+City       : Porto
+Check-in   : 2026-03-17
+Check-out  : 2026-03-18
+Nights     : 1
+Room rate  : 118.00 EUR per night
+----------------------------------
+TOTAL CHARGED : EUR 118.00
+Payment: corporate card

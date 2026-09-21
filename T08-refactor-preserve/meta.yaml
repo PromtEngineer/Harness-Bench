@@ -1,0 +1,7 @@
+id: T08
+slug: refactor-preserve
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 15
+notes: Split a ~400-line parse/validate/render megamodule into three concern modules plus a <=60-line facade; tests sha-guarded, all src files <=150 lines, behavior unchanged.

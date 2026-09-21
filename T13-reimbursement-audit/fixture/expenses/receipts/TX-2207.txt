@@ -1,0 +1,10 @@
+*** METRO TAXI ***
+RECEIPT
+Ref  : TX-2207
+Date : 10/03/2026
+City : New York
+Pickup : Tech Park
+Dropoff: Old Town
+FARE 23.40
+CURRENCY USD
+Thank you for riding

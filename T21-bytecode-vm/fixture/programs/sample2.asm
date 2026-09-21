@@ -1,0 +1,25 @@
+
+PUSH 0
+STORE 0
+PUSH 1
+STORE 1
+loop:
+LOAD 1
+PUSH 10
+GT
+JZ body
+JMP end
+body:
+LOAD 0
+LOAD 1
+ADD
+STORE 0
+LOAD 1
+PUSH 1
+ADD
+STORE 1
+JMP loop
+end:
+LOAD 0
+PRINTI
+HALT

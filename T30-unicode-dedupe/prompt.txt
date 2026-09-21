@@ -1,0 +1,18 @@
+Deduplicate the identity records in people.tsv per the canonicalization
+spec in SPEC.md, and write dedup.json in the workspace root.
+
+Both files are sha256-guarded READ ONLY inputs; produce dedup.json with
+a script you write in the workspace (Python 3 stdlib only — the
+unicodedata module is your friend).
+
+Follow SPEC.md to the letter. The data is a minefield of lookalikes:
+composed vs decomposed accents, fullwidth letters, zero-width
+characters, exotic spaces, ß/ss case folding, provider-specific email
+rules — plus distractor pairs that LOOK similar but must NOT merge
+(e.g. Turkish dotless ı, plus-suffixes on domains without the provider
+rule). Getting "most of it" right still produces the wrong clusters:
+the grader compares your dedup.json exactly (clusters and stats).
+
+Sanity anchors to check yourself against: casefold not lower, NFKC not
+NFC/NFD, and category-based (not codepoint-list) removal of format and
+space characters.

@@ -1,0 +1,10 @@
+*** METRO TAXI ***
+RECEIPT
+Ref  : TX-2218
+Date : 12/03/2026
+City : Berlin
+Pickup : Old Town
+Dropoff: Tech Park
+FARE 21.75
+CURRENCY EUR
+Thank you for riding

@@ -1,0 +1,7 @@
+{
+  "resolved": {
+    "core": "1.5.0",
+    "orm": "1.2.0"
+  },
+  "solvable": true
+}

@@ -1,0 +1,7 @@
+id: T12
+slug: doc-qa-long
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 5
+notes: Answer 8 precise questions (exact typed JSON answers) about a generated, internally-consistent 60KB LatticeSync protocol spec whose facts are spread across constant tables, a state machine, frame formats, config and compatibility matrices.

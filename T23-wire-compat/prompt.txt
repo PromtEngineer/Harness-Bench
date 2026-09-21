@@ -1,0 +1,26 @@
+Extend the TLVP wire codec in this workspace from protocol version 1 to
+also speak version 2, without breaking version 1 by a single byte.
+
+Workspace:
+- tlvp/proto.py     the working TLVP/1 codec (this is what you modify)
+- PROTOCOL.md       TLVP/1 spec (READ ONLY, sha256-guarded)
+- CHANGES.md        the complete TLVP/2 spec you must implement
+                    (READ ONLY, sha256-guarded)
+- golden/*.hex/.json  recorded TLVP/1 frames with their message dicts.
+                    TLVP/1 output is FROZEN: encode(msg, version=1) and
+                    plain encode(msg) must reproduce these transcripts
+                    byte-for-byte, and decode() must keep accepting them.
+                    (READ ONLY, sha256-guarded)
+
+Implement everything in CHANGES.md: the v2 flags-bit framing with
+stream_id and CRC-32 trailer, extended TLV lengths, the nested BATCH
+message type, unknown-TLV skipping in v2 (v1 stays strict), reserved
+flag bit rejection, and the encode(msg, version=) API.
+
+The public API surface stays: tlvp.encode, tlvp.decode, tlvp.FrameError.
+
+Test both directions yourself against the goldens before finishing. The
+grader replays the goldens byte-for-byte, round-trips a set of hidden v2
+frames (including extended-length and batch edge cases), feeds mangled
+frames that must raise tlvp.FrameError, and decodes an interleaved
+v1/v2 stream.

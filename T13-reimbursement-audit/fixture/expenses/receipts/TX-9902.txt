@@ -1,0 +1,10 @@
+*** AIRPORT LINE CARS ***
+RECEIPT
+Ref  : TX-9902
+Date : 12/03/2026
+City : London
+Pickup : Hotel
+Dropoff: Client Office
+FARE 12.00
+CURRENCY GBP
+Thank you for riding

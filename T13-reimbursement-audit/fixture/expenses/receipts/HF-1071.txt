@@ -1,0 +1,13 @@
+==================================
+   GRAND MERIDIAN — GUEST FOLIO
+==================================
+Folio No   : HF-1071
+Guest      : (corporate account)
+City       : Manchester
+Check-in   : 2026-03-19
+Check-out  : 2026-03-20
+Nights     : 1
+Room rate  : 132.00 GBP per night
+----------------------------------
+TOTAL CHARGED : GBP 132.00
+Payment: corporate card

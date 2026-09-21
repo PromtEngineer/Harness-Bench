@@ -1,0 +1,8 @@
+NATIONAL RAIL / E-TICKET
+Ticket: RL-4408
+Travel date: 17 Mar 2026
+From: Airport   To: Central Station
+City of issue: Manchester
+Class: Standard  Coach B Seat 4
+PRICE: GBP 41.50
+Ticket conditions apply.

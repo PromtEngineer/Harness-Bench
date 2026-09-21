@@ -1,0 +1,36 @@
+Binary format decoding task (Python 3 stdlib only, no network).
+
+Workspace layout:
+- format.md          complete specification of the SLPK v2 binary log
+                     format. READ ONLY -- do not modify (sha256-guarded).
+- data/records.slpk  a binary log file in that format.
+                     READ ONLY -- do not modify (sha256-guarded).
+
+Decode data/records.slpk strictly per format.md (mind the LEB128 varint
+payload length, the CRC-32 of each payload, and the footer string table),
+then write summary.json in the WORKSPACE ROOT: a single JSON object with
+EXACTLY these six keys:
+
+  "record_count"        int: the record count from the file header.
+  "active_count"        int: number of records with the deleted flag CLEAR
+                        and a stored CRC that matches the payload.
+  "deleted_count"       int: number of records with the deleted flag set.
+  "crc_failures"        list of ints: the record_id of EVERY record
+                        (deleted or not) whose stored CRC does not match
+                        its payload, sorted ascending.
+  "total_payload_bytes" int: sum of payload lengths over active records
+                        with valid CRC only.
+  "top5_tags"           list of exactly 5 two-element [name, count] pairs:
+                        tag NAMES (resolved via the footer string table)
+                        counted over active records with valid CRC only,
+                        sorted by count descending, ties by name ascending.
+
+Rules:
+- Deleted records still carry a payload/CRC/tag; they count only toward
+  deleted_count (and crc_failures if corrupt), never toward active totals.
+- Reject any record with the compressed flag bit set (the file contains
+  none if you parse it correctly; hitting one means your offsets drifted).
+- All counts must be JSON integers (the checker type-checks them).
+- How you produce summary.json is up to you (e.g. write a decoder script
+  in the workspace), but summary.json is what is checked -- exact content
+  match against the reference decode.

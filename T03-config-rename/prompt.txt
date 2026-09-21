@@ -1,0 +1,20 @@
+Product rename: the user-facing product name "Orion" is being renamed to
+"Nova".
+
+Task: replace the product name Orion with Nova everywhere it appears as the
+user-facing product name in this project — source code (src/), packaging
+metadata (pyproject.toml), documentation (docs/), and deployment config
+(deploy/).
+
+Hard rules:
+- NEVER modify anything under vendor/. It is vendored third-party content
+  and is verified byte-for-byte by the checker. The "Orion" mention in
+  vendor/CHANGELOG.vendor.md is a third-party compatibility note about the
+  old name and must stay exactly as it is.
+- Do NOT modify anything under tests/. The tests already expect the new
+  name and are verified byte-for-byte by the checker.
+- Do not rename any files or directories; change file contents only.
+
+Done means: `python3 -m pytest -q` run from the workspace root passes
+(3 tests), and the string "Orion" does not appear anywhere in the project
+outside vendor/.

@@ -1,0 +1,10 @@
+*** CITY CAB CO ***
+RECEIPT
+Ref  : TX-2224
+Date : 20/03/2026
+City : Austin
+Pickup : Tech Park
+Dropoff: Convention Ctr
+FARE 50.00
+CURRENCY USD
+Thank you for riding

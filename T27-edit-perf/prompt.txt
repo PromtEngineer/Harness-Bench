@@ -1,0 +1,27 @@
+Performance task: make the text-buffer workload finish in time WITHOUT
+changing what it computes.
+
+Workspace:
+- driver.py        applies an op script (insert/delete/slice) to a document
+                   and prints `DIGEST <sha256>`. READ ONLY (sha256-guarded).
+- edbuf/buffer.py  the Buffer class driver.py uses. Correct but naive:
+                   every edit copies the whole document. THIS is what you
+                   optimize — any data structure you like, same contract
+                   (see its docstring: clamping semantics matter).
+- doc/sample.txt + ops/sample.ops + ops/sample.digest
+                   small workload with its correct digest — use it to
+                   verify correctness fast (the naive code passes it too).
+- doc/full.txt + ops/full.ops
+                   the real workload: 8MB document, 400,000 ops.
+                   (READ ONLY, guarded, like all doc/ and ops/ files.)
+
+Target: `python3 driver.py doc/full.txt ops/full.ops` must complete in
+under 90 seconds on this machine and print the correct digest. The
+naive implementation is more than an order of magnitude too slow.
+
+Notes:
+- The digest folds in every S-op result and the final document, so
+  correctness of intermediate states matters, not just the end state.
+- The grader also runs a second, different document + op script through
+  your Buffer with the same 90s budget, plus edge-case unit tests on
+  the clamping contract. Don't special-case the shipped files.

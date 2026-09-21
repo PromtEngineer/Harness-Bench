@@ -1,0 +1,20 @@
+Event-sourcing reduction task (Python 3 stdlib only, no network).
+
+Workspace:
+- SPEC.md         complete reduction spec. READ ONLY (sha256-guarded).
+- events.ndjson   ~6000 shuffled warehouse events. READ ONLY (guarded).
+
+Reduce the event log per SPEC.md and write state.json in the workspace
+root. The hard parts are in the spec's "Effects and reversals" section:
+events apply in seq order (the file is shuffled), duplicate event_ids
+must be skipped, adjust events are absolute (their reversal restores the
+prior value, which requires tracking history), reversals can reverse
+other reversals, and reversals can dangle in three distinct ways.
+
+Mixed schema versions: v1 events carry whole units, v2 events carry
+milli-units; the reduced state is entirely in milli-units.
+
+Build a small verification for yourself before writing the final answer
+(e.g. hand-compute a few events end-to-end). The grader compares
+state.json against the reference reduction — exact match, stock and all
+five stats.

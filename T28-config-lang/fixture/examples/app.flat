@@ -1,0 +1,6 @@
+features.debug=false
+features.flags=["a","b","c"]
+features.motd="no ${escapes} here\\n"
+server.banner="listening on 127.0.0.1:9090"
+server.host="127.0.0.1"
+server.port=9090

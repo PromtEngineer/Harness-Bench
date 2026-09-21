@@ -1,0 +1,7 @@
+id: T11
+slug: api-server
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 30
+notes: Implement a stdlib-only JSON notes HTTP server from spec.md (sequential ids, tag/limit queries, error bodies, notes.json persistence); graded by ~27 live curl assertions including a kill-and-restart persistence phase.

@@ -1,0 +1,13 @@
+==================================
+   GRAND MERIDIAN — GUEST FOLIO
+==================================
+Folio No   : HF-1049
+Guest      : (corporate account)
+City       : New York
+Check-in   : 2026-03-11
+Check-out  : 2026-03-12
+Nights     : 1
+Room rate  : 210.00 USD per night
+----------------------------------
+TOTAL CHARGED : USD 210.00
+Payment: corporate card

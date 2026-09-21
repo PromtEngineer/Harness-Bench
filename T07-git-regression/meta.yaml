@@ -1,0 +1,7 @@
+id: T07
+slug: git-regression
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 20
+notes: 30-commit git repo; commit 17 "Simplify discount math" silently switched half-up rounding to floor; agent must bisect to the bad hash and fix HEAD without touching tests or rewriting history.

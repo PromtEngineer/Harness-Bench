@@ -1,0 +1,31 @@
+Flaky test hunt (Python 3 + pytest, stdlib only).
+
+Workspace layout:
+- statlib/   a small statistics/utility library (4 modules)
+- tests/     the pytest suite: 14 tests.
+             READ ONLY -- do not modify, delete, or add ANY file under
+             tests/ (the directory is hash-guarded by the checker).
+
+The suite is flaky: depending on the PYTHONHASHSEED value and on leftover
+state from previous runs, some runs pass and some fail. Exactly 3 tests are
+affected, each by a DISTINCT root cause in the LIBRARY. The tests themselves
+are correct: they assert behavior the library's own documented contracts
+promise (deterministic sorted ordering, deterministic float results, opaque
+scratch-file handling).
+
+Your task:
+1. Reproduce the flakiness, e.g. by running
+       PYTHONHASHSEED=<n> python3 -m pytest -q tests/
+   repeatedly with different seeds and back-to-back repetitions.
+2. Find and fix all three root causes IN THE LIBRARY (statlib/), so that the
+   suite passes 10 out of 10 consecutive runs with PYTHONHASHSEED cycling
+   through: 0 1 2 42 99 7 13 21 34 55 (this is exactly what the checker does;
+   it does not clean up leftover state between runs).
+3. Do not weaken anything: fix root causes (honor the documented contracts;
+   use proper temporary-file hygiene). Keep the existing modules and public
+   function names in place. The checker re-introduces each original bug into
+   a copy of your fixed library and requires the unchanged test suite to
+   catch it, so masking symptoms (skips, sleeps, retries, monkey-patching
+   from conftest.py, reimplementing modules under new names) will fail.
+
+Deliverable: modified files under statlib/ only.

@@ -1,0 +1,8 @@
+GENERIC EXPENSE VOUCHER
+------------------------------
+Voucher ID: EV-7323
+Issued: 2026.03.19
+Location: Zurich
+Description: ground transport / misc (taxi)
+Amount due: 33.20 EUR
+Approved by: ops-desk

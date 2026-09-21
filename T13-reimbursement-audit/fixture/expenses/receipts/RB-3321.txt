@@ -1,0 +1,10 @@
+Trattoria Lume
+Berlin — table 12
+Receipt #RB-3321
+Date: Mar 14, 2026
+----------------------------
+ Covers: 1
+ Food          30.03
+ Service chg   2.97
+----------------------------
+ TOTAL EUR 33.00

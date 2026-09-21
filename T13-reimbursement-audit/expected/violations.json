@@ -1,0 +1,62 @@
+[
+  {
+    "claim_id": "C003",
+    "rule": "missing-receipt",
+    "excess_usd": 17.75
+  },
+  {
+    "claim_id": "C005",
+    "rule": "weekend-meal",
+    "excess_usd": 35.64
+  },
+  {
+    "claim_id": "C007",
+    "rule": "over-claim",
+    "excess_usd": 6.28
+  },
+  {
+    "claim_id": "C009",
+    "rule": "taxi-over-cap",
+    "excess_usd": 9.22
+  },
+  {
+    "claim_id": "C011",
+    "rule": "missing-receipt",
+    "excess_usd": 6.0
+  },
+  {
+    "claim_id": "C013",
+    "rule": "meal-over-cap",
+    "excess_usd": 9.12
+  },
+  {
+    "claim_id": "C016",
+    "rule": "hotel-over-cap",
+    "excess_usd": 22.0
+  },
+  {
+    "claim_id": "C019",
+    "rule": "over-claim",
+    "excess_usd": 18.4
+  },
+  {
+    "claim_id": "C023",
+    "rule": "weekend-meal",
+    "excess_usd": 27.1
+  },
+  {
+    "claim_id": "C027",
+    "rule": "taxi-over-cap",
+    "excess_usd": 13.75
+  },
+  {
+    "claim_id": "C031",
+    "rule": "meal-over-cap",
+    "excess_usd": 9.1
+  },
+  {
+    "claim_id": "C035",
+    "rule": "hotel-over-cap",
+    "excess_usd": 29.2
+  }
+]

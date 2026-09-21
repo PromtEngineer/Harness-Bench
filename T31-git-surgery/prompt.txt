@@ -1,0 +1,24 @@
+Git surgery task. The repo in webshop/ has:
+
+- branch main: the stable pricing library. All tests pass there.
+- branch feature/pricing-v2: 10 commits of feature work on top of main.
+  The features are wanted, but somewhere in those 10 commits TWO commits
+  introduced regressions — `python3 -m pytest tests/ -q` fails on the
+  feature tip.
+
+Your job:
+1. Identify the two regression commits (read diffs, run tests per
+   commit, bisect — your call).
+2. Create a branch named `fixed` that contains ALL the feature work
+   WITHOUT the two regressions' changes (e.g. revert them on top of the
+   feature branch). All tests must pass on `fixed`.
+3. Write the two full 40-char commit SHAs to bad_commits.txt in the
+   workspace root (one per line, any order).
+
+Hard rules:
+- Never modify tests/ or conftest.py (checked byte-for-byte on `fixed`).
+- Do not rewrite history: main and feature/pricing-v2 must remain
+  exactly where they are; `fixed` must contain main's history.
+- The feature behaviors from the 8 good commits must all survive on
+  `fixed` — the grader runs an extended hidden suite there, so removing
+  too much fails just like removing too little.

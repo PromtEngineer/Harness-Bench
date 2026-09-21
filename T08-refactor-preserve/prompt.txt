@@ -1,0 +1,28 @@
+Your workspace contains:
+- src/megamodule.py — a ~400-line module mixing three concerns (markdown-ish
+  parsing, schema validation, HTML rendering) with interdependencies.
+- tests/ — 14 pytest tests that import ONLY from megamodule
+  (run them with: python3 -m pytest -q tests).
+
+Task: refactor by concern, preserving the public API and all behavior.
+
+1. Split the implementation into exactly three new modules:
+       src/parsing.py      (slugify, parse_inline, parse_document, iter_blocks,
+                            heading_outline, strip_markup, count_words, ...)
+       src/validation.py   (DEFAULT_SCHEMA, validate_document, is_valid,
+                            summarize_errors, ...)
+       src/rendering.py    (escape_html, render_inline, render_block,
+                            render_document, render_toc, html_from_text, ...)
+   Put each function in the module matching its concern and add the imports
+   the modules need from each other (src/ is on sys.path via tests/conftest.py,
+   so use plain `from parsing import ...` style imports).
+2. Rewrite src/megamodule.py as a thin facade: at most 60 lines, containing
+   only imports from the three new modules (plus optionally __all__ and a
+   docstring). It must define NO functions and NO classes of its own.
+3. Every .py file under src/ must be at most 150 lines.
+4. Behavior and public API must be unchanged: the existing tests must pass
+   unmodified.
+5. Do not add, remove, or modify anything under tests/.
+
+Deliverables: src/parsing.py, src/validation.py, src/rendering.py and the
+rewritten src/megamodule.py.

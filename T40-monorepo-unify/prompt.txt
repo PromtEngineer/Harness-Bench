@@ -1,0 +1,24 @@
+Monorepo unification task. Three services in this workspace (billing,
+fulfil, notify under services/) each carry their OWN drifted copies of
+four utility modules in services/<name>/utils/: money, dates, ids,
+retry. The drift is real — rounding modes, date formats, checksum
+moduli and backoff curves all differ.
+
+DECISIONS.md is the authoritative record of the platform decision on
+how to unify them. Read it completely and carefully: the canonical
+variant differs per module (it is NOT "pick one service"), one module
+is a MERGE of two services' choices, and one decision deliberately
+changes billing's user-visible date format.
+
+Do the migration it describes:
+1. Create the shared corelib/ package with the canonical modules.
+2. Point all three services at corelib (import style per D1).
+3. Delete every services/<name>/utils/ directory — no copies, shims or
+   re-exports may remain.
+
+Constraints: service API signatures stay; tests/ and DECISIONS.md are
+sha256-guarded (the visible tests only assert variant-independent
+behavior and must stay green). The grader additionally runs hidden
+tests asserting the exact canonical behavior of every module THROUGH
+each service's API, plus structural checks that the duplicate variants
+are gone from the tree.

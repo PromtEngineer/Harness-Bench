@@ -1,0 +1,20 @@
+id: T34
+slug: api-gateway
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 34
+checker_runtime_s: 30
+notes: >
+  Successor to T11 (the only sub-90% task in the original set) with four
+  interacting protocol mechanisms: (1) per-key token bucket rate
+  limiting made fully deterministic via an X-Test-Clock header the spec
+  defines as the bucket time source (capacity 20, 10/s continuous
+  refill, Retry-After = ceil, min 1; 429 consumes nothing; buckets
+  per-key); (2) Idempotency-Key replay returning the ORIGINAL 201 with
+  the same id and no id consumption, 422 on body mismatch; (3) ETag
+  "v<n>" with If-None-Match 304 and If-Match optimistic concurrency
+  (428 missing / 409 stale); (4) base64 "id:<n>" cursor pagination with
+  [1,50] clamping. Driver runs ~60 assertions including exact
+  Retry-After=1, 5-token partial refill at +500ms, exact 20-token cap
+  at +11s, cross-key isolation, cursor walk exactness, and every error
+  body. Build hygiene: reference server passes the driver in a temp ws.

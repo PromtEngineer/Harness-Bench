@@ -1,0 +1,27 @@
+Your workspace contains:
+- db/sales.db — a SQLite database (tables: customers, products, orders,
+  order_items).
+- questions.md — five analytical questions with exact definitions.
+
+Task: answer all five questions and write the answers to a file report.json at
+the workspace root. It must be a single JSON object with exactly these keys:
+
+{
+  "q1": <int>,                      // customer_id
+  "q2": "YYYY-MM",                  // month string
+  "q3": {"<region>": <number>, ...},// one entry per region, 2-decimal values
+  "q4": [<int>, <int>],             // product ids sorted ascending
+  "q5": <number>                    // 2-decimal value
+}
+
+Rules:
+- Use only the data in db/sales.db; work offline.
+- Follow the definitions in questions.md EXACTLY (what counts as revenue,
+  which orders are excluded, the median definition, the tie-free maxima).
+- All rounding to 2 decimals must be done with Python's round(x, 2), not
+  SQLite's ROUND() — they disagree on exact-.5 cases and the grader expects
+  Python rounding.
+- The grader compares your report.json against a precomputed answer key;
+  values must match exactly.
+
+Deliverable: report.json at the workspace root.

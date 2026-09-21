@@ -1,0 +1,8 @@
+GENERIC EXPENSE VOUCHER
+------------------------------
+Voucher ID: EV-7303
+Issued: 2026.03.16
+Location: Lyon
+Description: ground transport / misc (rail)
+Amount due: 28.90 EUR
+Approved by: ops-desk

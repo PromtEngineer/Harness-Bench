@@ -1,0 +1,10 @@
+Trattoria Lume
+Leeds — table 3
+Receipt #RB-3359
+Date: Mar 16, 2026
+----------------------------
+ Covers: 1
+ Food          20.38
+ Service chg   2.02
+----------------------------
+ TOTAL GBP 22.40

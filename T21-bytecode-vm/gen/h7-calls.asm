@@ -1,0 +1,14 @@
+
+PUSH 5
+CALL f
+PRINTI
+HALT
+f:
+PUSH 3
+ADD
+CALL g
+RET
+g:
+PUSH 10
+MUL
+RET

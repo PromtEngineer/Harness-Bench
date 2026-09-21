@@ -1,0 +1,8 @@
+GENERIC EXPENSE VOUCHER
+------------------------------
+Voucher ID: EV-7320
+Issued: 2026.03.20
+Location: Leeds
+Description: ground transport / misc (rail)
+Amount due: 19.80 GBP
+Approved by: ops-desk

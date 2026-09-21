@@ -1,0 +1,10 @@
+*** AIRPORT LINE CARS ***
+RECEIPT
+Ref  : TX-2215
+Date : 09/03/2026
+City : London
+Pickup : Tech Park
+Dropoff: Hotel
+FARE 47.00
+CURRENCY GBP
+Thank you for riding

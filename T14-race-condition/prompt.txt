@@ -1,0 +1,31 @@
+The jobqueue library in this workspace loses work under concurrency.
+
+jobqueue/ is a small threaded worker-pool library (queue.py, worker.py).
+repro.py is a seeded stress harness: 200 jobs on 8 workers with a
+barrier-synchronized start. It currently fails most runs with output like
+
+  REPRO FAIL: lost results: recorded 197 of 200
+  REPRO FAIL: lost completions: counted 195 of 200
+
+Your job: find the root cause(s) inside jobqueue/ and fix them so the
+library is correct under concurrent use. When you are done,
+`python3 repro.py` must exit 0 reliably — the checker runs it 20
+consecutive times and all 20 must pass.
+
+Hard constraints:
+- Do NOT modify repro.py in any way (its sha256 is verified).
+- Fix the actual synchronization defects. The following workarounds are
+  forbidden and are checked for or will be caught by the harness:
+  - adding any form of sleeping/backoff anywhere in jobqueue/ (the word
+    "sleep" may not appear in jobqueue/ after your fix);
+  - retry loops that re-run jobs or re-record results to paper over lost
+    updates;
+  - reducing parallelism: the pool must still run 8 genuinely concurrent
+    workers (repro.py asserts that at least 3 distinct workers processed
+    jobs).
+- Keep the public API unchanged: Job, JobQueue (get_next_job,
+  record_result, mark_complete, results, completed_count, completion_log,
+  stats) and Worker/WorkerPool signatures must keep working exactly as
+  repro.py uses them.
+
+There is more than one defect. Read the library carefully.

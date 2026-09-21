@@ -1,0 +1,18 @@
+id: T14
+slug: race-condition
+tier: hard
+timeout_s: 900
+min_turns_estimate: 25
+checker_runtime_s: 60
+notes: >
+  Two planted concurrency defects in a threaded worker-pool library:
+  (1) copy-merge-replace publication of the shared results dict in
+  JobQueue.record_result (lost updates), and (2) a non-atomic
+  read/format/write sequence on completed_count in JobQueue.mark_complete.
+  repro.py (sha256-guarded) runs 200 jobs / 8 workers with a barrier start
+  and sys.setswitchinterval(1e-6); measured failure rate on the pristine
+  fixture: 15/15 runs, and each bug alone still fails 15/15 runs, so
+  partial fixes are caught. Checker greps jobqueue/ for any "sleep",
+  verifies repro.py hash, and requires 20 consecutive green runs
+  (~0.4 s/run, ~10-25 s total; budget <=300 s). repro.py also asserts >=3
+  distinct workers processed jobs to block single-worker serialization.

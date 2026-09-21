@@ -1,0 +1,32 @@
+{
+  "record_count": 500,
+  "active_count": 461,
+  "deleted_count": 37,
+  "crc_failures": [
+    401460114,
+    847485644
+  ],
+  "total_payload_bytes": 141981,
+  "top5_tags": [
+    [
+      "auth",
+      71
+    ],
+    [
+      "billing",
+      55
+    ],
+    [
+      "cache",
+      55
+    ],
+    [
+      "db",
+      50
+    ],
+    [
+      "import",
+      48
+    ]
+  ]
+}

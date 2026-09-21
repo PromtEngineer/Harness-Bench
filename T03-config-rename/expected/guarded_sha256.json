@@ -1,0 +1,5 @@
+{
+  "tests/conftest.py": "8278eff312e7eeb0bd2fbc591c3a740910895c46e4fc5d237ae00ac77adecb4b",
+  "tests/test_cli.py": "25e2e1e8be38c5e8bf4501fe5b43f7f29a8b279b48a586f274df39085866e541",
+  "vendor/CHANGELOG.vendor.md": "f083b3dec6d78847eff71e5cf074b9e469e2b4856e13425a46ff5674cf1f0d03"
+}

@@ -1,0 +1,8 @@
+[project]
+name = "lattice-cli"
+version = "2.3.0"
+description = "Deterministic environment lattice manager"
+requires-python = ">=3.10"
+
+[project.scripts]
+lattice = "lattice_cli.cli:main"

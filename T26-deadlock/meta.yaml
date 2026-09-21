@@ -1,0 +1,23 @@
+id: T26
+slug: deadlock
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 26
+checker_runtime_s: 40
+notes: >
+  Two-defect concurrency task on an account store: (1) transfer() takes
+  per-account locks in ARGUMENT order, so opposite transfers deadlock —
+  stress.py forces the interleaving deterministically via the documented
+  debug_hook sync points and a 2-thread barrier; (2) audit() takes locks
+  in dict order and must both avoid deadlock against transfers and never
+  return a torn snapshot. The debug_hook call points are contractually
+  frozen (the hidden driver fails if either is removed), which blocks
+  fix-by-deleting-instrumentation. Hidden driver phases: instrumentation
+  intact -> forced opposite-transfer interleaving with barrier (daemon
+  threads + join timeout detect deadlock deterministically) -> transfer
+  paused at "transfer-mid" while an audit runs (must block or return a
+  consistent 1500 sum; lock-free audit deterministically returns 1300 and
+  fails) -> 8x300 seeded transfer hammer with a continuous auditor,
+  final state compared to serial replay (transfers commute, so the
+  expected state is interleaving-independent). Reference fix: sorted
+  lock order in transfer + sorted acquisition in audit.

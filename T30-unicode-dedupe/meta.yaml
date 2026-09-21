@@ -1,0 +1,22 @@
+id: T30
+slug: unicode-dedupe
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 24
+checker_runtime_s: 10
+notes: >
+  Unicode canonicalization gauntlet (seed 300030): ~2000 TSV identity
+  rows with 420 planted collision groups spanning eight name-mangling
+  styles (NFD decomposition, fullwidth ASCII, Cf insertions ZWSP/ZWJ/
+  soft-hyphen, Zs substitutions NBSP/NNBSP/ideographic space, space
+  runs, swapcase, ss/uppercase-vs-casefold including Straße/Weiß/Grüße
+  names, fi ligature) and five email styles (case, provider dots,
+  +suffix, FULLWIDTH DOMAIN folding to mailbox.example so the provider
+  rule applies, Cf in local part), plus distractors that must NOT merge
+  (Turkish dotless ı under casefold; +suffix at a non-provider domain).
+  Build hygiene: five sabotaged pipelines (lower-not-casefold,
+  NFC-not-NFKC, no Cf strip, no provider rule, no Zs unify) each
+  asserted to produce different clusters, so every spec clause is
+  load-bearing; distractor separation asserted. Deliverable dedup.json,
+  exact semantic match of clusters (sorted asc, ordered by first id)
+  and stats.

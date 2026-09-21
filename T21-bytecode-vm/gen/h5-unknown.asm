@@ -1,0 +1,4 @@
+
+PUSH 1
+RAW 0xEE
+HALT

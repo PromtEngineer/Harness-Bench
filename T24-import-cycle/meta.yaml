@@ -1,0 +1,19 @@
+id: T24
+slug: import-cycle
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 24
+checker_runtime_s: 30
+notes: >
+  Two overlapping import cycles (pipeline<->serializers and
+  steps<->serializers) leave `import flowkit` raising ImportError out of
+  the box, so a single lucky-order tweak or one deferred import is not
+  enough. The agent must untangle the package (restructure or defer both
+  edges; sys.modules hacks are grep-rejected) AND implement a fully
+  specified CLI (flowkit/cli.py, run/list/describe subcommands, exact
+  error strings + exit code 2 contract from docs/CLI.md). Hidden pytest
+  runs the import matrix in fresh subprocesses (package + all 5
+  submodules standalone), exercises the frozen public API and
+  describe()/to_json() shapes, and drives the CLI including unknown-step,
+  invalid-file, and usage errors. Builder hygiene: asserts the pristine
+  fixture genuinely fails with a circular-import error.

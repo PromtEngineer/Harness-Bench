@@ -1,0 +1,42 @@
+
+PUSH 1
+STORE 0
+loop:
+LOAD 0
+PUSH 20
+GT
+JZ cont
+JMP end
+cont:
+LOAD 0
+PUSH 15
+MOD
+JZ fb
+LOAD 0
+PUSH 3
+MOD
+JZ fz
+LOAD 0
+PUSH 5
+MOD
+JZ bz
+LOAD 0
+PRINTI
+JMP next
+fb:
+PRINTS 2
+JMP next
+fz:
+PRINTS 0
+JMP next
+bz:
+PRINTS 1
+JMP next
+next:
+LOAD 0
+PUSH 1
+ADD
+STORE 0
+JMP loop
+end:
+HALT

@@ -1,0 +1,115 @@
+{
+  "roundtrip": [
+    {
+      "msg": {
+        "type": "hello",
+        "stream_id": 9,
+        "node": "core-1",
+        "ver": 2
+      },
+      "hex": "01010e00090000000106636f72652d31020402000000051cdfea"
+    },
+    {
+      "msg": {
+        "type": "data",
+        "stream_id": 1,
+        "seq": 5,
+        "payload_hex": "cafe"
+      },
+      "hex": "02010a00010000001004050000001102cafebdb21951"
+    },
+    {
+      "msg": {
+        "type": "data",
+        "stream_id": 2,
+        "seq": 6,
+        "payload_hex": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab"
+      },
+      "hex": "020136010200000010040600000011ff2c01ababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababfeb358be"
+    },
+    {
+      "msg": {
+        "type": "data",
+        "stream_id": 0,
+        "seq": 7,
+        "payload_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "hex": "020106010000000010040700000011feffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddde4a76"
+    },
+    {
+      "msg": {
+        "type": "data",
+        "stream_id": 0,
+        "seq": 8,
+        "payload_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "hex": "020109010000000010040800000011ffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffb3161f6d"
+    },
+    {
+      "msg": {
+        "type": "ack",
+        "stream_id": 4294967295,
+        "seq": 42
+      },
+      "hex": "03010600ffffffff10042a000000a24a1b88"
+    },
+    {
+      "msg": {
+        "type": "batch",
+        "stream_id": 3,
+        "items": [
+          {
+            "type": "data",
+            "stream_id": 3,
+            "seq": 100,
+            "payload_hex": "01"
+          },
+          {
+            "type": "data",
+            "stream_id": 3,
+            "seq": 101,
+            "payload_hex": "0202"
+          },
+          {
+            "type": "data",
+            "stream_id": 4,
+            "seq": 102,
+            "payload_hex": ""
+          }
+        ]
+      },
+      "hex": "04014500030000002015020109000300000010046400000011010143f882c2201602010a00030000001004650000001102020277f1da362014020108000400000010046600000011000605a26047fb39b5"
+    },
+    {
+      "msg": {
+        "type": "batch",
+        "stream_id": 8,
+        "items": []
+      },
+      "hex": "040100000800000000000000"
+    }
+  ],
+  "special": {
+    "skip_unknown_v2": {
+      "hex": "02010f004d0000001004370000007f0378797a1102beef435198b0",
+      "want": {
+        "type": "data",
+        "stream_id": 77,
+        "seq": 55,
+        "payload_hex": "beef"
+      }
+    },
+    "error_unknown_v1": {
+      "hex": "030009001004370000007f01784301"
+    },
+    "error_bad_crc": {
+      "hex": "02010a00010000001004050000001102cafebdb2190b"
+    },
+    "error_truncated": {
+      "hex": "02010a00010000001004050000001102cafebd"
+    },
+    "error_reserved_flags": {
+      "hex": "02030a00010000001004050000001102cafebdb21951"
+    }
+  }
+}

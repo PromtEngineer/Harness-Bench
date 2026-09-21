@@ -1,0 +1,10 @@
+Bistro Meridien
+New York — table 14
+Receipt #RB-3369
+Date: Mar 21, 2026
+----------------------------
+ Covers: 1
+ Food          40.04
+ Service chg   3.96
+----------------------------
+ TOTAL USD 44.00

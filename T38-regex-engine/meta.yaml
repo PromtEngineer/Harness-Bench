@@ -1,0 +1,19 @@
+id: T38
+slug: regex-engine
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 32
+checker_runtime_s: 30
+notes: >
+  Build a regex engine (literals, ., classes with ranges/negation/
+  edge-literal ] and -, escapes \d \w \s + meta-escapes, * + ?, |,
+  groups, empty branches) with PatternError on 15 malformed patterns.
+  fullmatch + leftmost-LONGEST search (spec'd to DIFFER from Python re
+  on "x|xy" — POSIX-style extent). `re`/`regex` banned via AST scan of
+  every workspace .py (hygiene: an re-backed cheat implementation is
+  asserted to be caught). Vectors: 44 hand-written fullmatch cases
+  (every one cross-checked against re.fullmatch/DOTALL at build) + 120
+  randomized generator cases (400 generated, all re-cross-checked) + 14
+  search-extent cases verified by the reference NFA + an
+  (a?)^24 a^24 blowup probe that times out naive backtrackers inside
+  the 240s checker budget.

@@ -1,0 +1,24 @@
+Aggregate the Q1 2026 sales data in this workspace.
+
+Input: data/<region>/sales-2026-<MM>.csv for regions north, south, west and
+months 01, 02, 03 (9 CSV files total). Every file has the header row:
+date,region,sku,units,unit_price_usd. Some sku values are quoted and contain
+commas (one also contains embedded double quotes) — use a real CSV parser,
+not naive comma splitting.
+
+Compute, per region, across all three months:
+- revenue_usd = sum over all rows of (units * unit_price_usd), rounded to
+  exactly 2 decimal places
+- units = sum over all rows of units (an integer)
+
+Deliverable: write a file named results.json in the workspace root (the
+directory that contains data/ and README.md) with exactly this structure:
+
+{"north": {"revenue_usd": <number>, "units": <integer>}, "south": {"revenue_usd": <number>, "units": <integer>}, "west": {"revenue_usd": <number>, "units": <integer>}}
+
+Requirements:
+- Valid JSON; the top-level object has exactly the keys "north", "south",
+  "west", and each region object has exactly the keys "revenue_usd", "units".
+- revenue_usd is a JSON number rounded to 2 decimal places; units is a JSON
+  integer (not a string, not a float).
+- Do not modify, add, or delete anything under data/.

@@ -1,0 +1,48 @@
+Release engineering: bump lattice-cli from 2.3.0 to 3.0.0, consistently.
+
+This workspace is a git repository of the tool "lattice-cli", currently at
+version 2.3.0 (annotated tag v2.3.0 exists earlier in history; there are
+commits on top of it). Two deliverables:
+
+1. VERSION BUMP. Replace version 2.3.0 with 3.0.0 in every place the
+   version is recorded. The version appears in exactly these 10 files:
+
+   - VERSION                          (file content, exactly "3.0.0")
+   - pyproject.toml                   (version = "3.0.0")
+   - src/lattice_cli/__init__.py      (__version__ = "3.0.0")
+   - README.md                        (badge URL and the pip install snippet)
+   - docs/conf.py                     (both version and release)
+   - CITATION.cff                     (version: 3.0.0)
+   - Dockerfile                       (LABEL version="3.0.0")
+   - deploy/compose.yaml              (image tag lattice/lattice-cli:3.0.0)
+   - helm/Chart.yaml                  (BOTH version: and appVersion:)
+   - .github/workflows/release.yml    (env RELEASE_VERSION: "3.0.0")
+
+   After your change the string "2.3.0" must not appear anywhere in the
+   working tree EXCEPT inside CHANGELOG.md (whose historical sections keep
+   it, and where the tag name v2.3.0 may appear).
+
+2. CHANGELOG. Prepend a new section to CHANGELOG.md so that "## 3.0.0" is
+   the FIRST "## " heading in the file (the "# Changelog" title stays at
+   the top). The section must contain every feat: and fix: commit subject
+   since the v2.3.0 tag (git log v2.3.0..HEAD), grouped like this:
+
+   ## 3.0.0
+
+   ### Features
+
+   - <subject of each feat: commit, oldest first>
+
+   ### Fixes
+
+   - <subject of each fix: commit, oldest first>
+
+   Rules: subjects verbatim with only the leading "feat: " / "fix: "
+   prefix removed; one "- " bullet per commit; chronological order oldest
+   first within each group; chore:/docs: commits are excluded; the
+   existing changelog content below stays unchanged.
+
+Do NOT create commits, do not rewrite git history, and do not move or
+delete the v2.3.0 tag — leave all your edits uncommitted in the working
+tree. The checker validates the changelog against `git log v2.3.0..HEAD`
+run inside this repository.

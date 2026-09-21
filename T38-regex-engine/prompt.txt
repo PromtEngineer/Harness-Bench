@@ -1,0 +1,17 @@
+Implement the regex engine specified in SPEC.md as rx.py in the
+workspace root: PatternError, fullmatch(pattern, text), and
+search(pattern, text) with LEFTMOST-LONGEST semantics.
+
+Two things make this expert-tier:
+1. The `re` and `regex` modules are banned everywhere in your workspace
+   (the grader AST-scans every .py file). You are building the engine.
+2. search() is leftmost-LONGEST, which differs from Python's re for
+   patterns like "x|xy" (SPEC.md shows the exact case). Follow the
+   spec, not re's backtracking behavior.
+
+SPEC.md contains a dozen worked examples including all the error cases;
+make every one of them pass, and mind the character-class corner cases
+(`]` first is literal, `-` at the edges is literal, reversed ranges are
+errors). The grader runs a few hundred hidden vectors including
+randomized patterns and an exponential-blowup probe that a naive
+backtracking matcher will time out on. SPEC.md is sha256-guarded.

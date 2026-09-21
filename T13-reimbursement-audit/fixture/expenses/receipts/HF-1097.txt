@@ -1,0 +1,13 @@
+==================================
+   STADTHAUS KRONE — GUEST FOLIO
+==================================
+Folio No   : HF-1097
+Guest      : (corporate account)
+City       : Chicago
+Check-in   : 2026-03-17
+Check-out  : 2026-03-18
+Nights     : 1
+Room rate  : 175.00 USD per night
+----------------------------------
+TOTAL CHARGED : USD 175.00
+Payment: corporate card

@@ -1,0 +1,23 @@
+id: T31
+slug: git-surgery
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 30
+checker_runtime_s: 30
+notes: >
+  History surgery on a 25-commit repo: branch feature/pricing-v2 adds 10
+  commits of wanted work but two of them (F3 'perf: simplify price
+  rounding hot path' -> int() truncation, F7 'tax: streamline
+  basis-point math' -> // truncation) each break one visible test file.
+  Deliverables: branch `fixed` = feature minus the two bad changes, and
+  bad_commits.txt naming both SHAs. Commit dates/authors pinned so SHAs
+  are deterministic; expected SHAs recorded at build. Grading: SHA set
+  exact (order/case-insensitive), main and feature tips untouched, main
+  ancestor of fixed, tests/ + conftest byte-identical ON the fixed
+  branch (graded in a scratch worktree), visible suite green, and a
+  hidden suite proving all 8 good commits' behaviors survived (tiers,
+  cart integration incl. a rounding-path case, coupons, bulk pricing,
+  currency formatting, end-to-end totals) plus both regressions gone.
+  Misleading commit messages make diff-reading/bisection necessary.
+  Build hygiene: main asserted green, feature tip asserted red on
+  exactly the two suites, reference revert asserted green on both.

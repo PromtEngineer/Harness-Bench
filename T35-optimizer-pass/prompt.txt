@@ -1,0 +1,20 @@
+Add the optimization pass described in spec-opt.md to the MiniExpr
+compiler in this workspace.
+
+The compiler pipeline (lexer -> parser -> codegen -> interp) works and
+is sha256-guarded READ ONLY. Your deliverable is minic/optimize.py
+(currently a no-op stub; you may add helper modules under minic/).
+
+Required: constant folding (with the interpreter's EXACT
+truncate-toward-zero division — read minic/interp.py before folding any
+negative division), division-by-zero preservation, the four algebraic
+identities, constant-branch elimination, unreachable-code removal, and
+dead-store elimination via POP substitution. Apply to a fixpoint.
+
+Grading is two-sided per program: (a) `python3 run.py <prog> --opt`
+must print exactly what the unoptimized run prints, and (b) the
+optimized instruction count must come in under a per-program budget.
+The budgets for the three example programs are in examples/BUDGETS.txt;
+verify with `python3 compile.py examples/ex1.me --opt | wc -l`. Hidden
+grading programs exercise every transform, so partial passes fail on
+size and wrong folds fail on semantics.

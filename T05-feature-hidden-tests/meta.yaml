@@ -1,0 +1,7 @@
+id: T05
+slug: feature-hidden-tests
+tier: medium
+timeout_s: 900
+min_turns_estimate: 15
+checker_runtime_s: 10
+notes: Implement TokenBucketRateLimiter from a dense spec plus runnable examples; graded by 12 hidden pytest edge-case tests.

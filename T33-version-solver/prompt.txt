@@ -1,0 +1,25 @@
+Implement resolver.py (workspace root, Python 3 stdlib only): a
+dependency version resolver following SPEC.md EXACTLY.
+
+The index in this workspace contains dependency structures where the
+obvious greedy strategy (always take the newest version that fits) hits
+dead ends: the newest choice at one level makes a package deeper in the
+tree unsatisfiable, and only chronological backtracking (undoing the
+most recent choice, forbidding it, and taking the next candidate — as
+specified) reaches the answer. There is also at least one genuinely
+unsolvable requirement set your resolver must report as such rather
+than crash or loop forever.
+
+Files:
+- SPEC.md                    the normative algorithm + formats (guarded)
+- index.json                 the package index (guarded)
+- requirements-sample.json   a sample input (guarded)
+- expected-sample-lock.json  the exact lock your resolver must produce
+                             for the sample (guarded)
+
+Get the sample bit-exact first:
+    python3 resolver.py index.json requirements-sample.json lock.json
+Then make sure your backtracking really undoes constraints added by
+undone assignments — that is where naive implementations fail. The
+grader runs several hidden requirement sets against the same index and
+compares lockfiles semantically.

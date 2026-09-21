@@ -1,0 +1,14 @@
+{
+  "C003": "missing-receipt",
+  "C005": "weekend-meal",
+  "C007": "over-claim",
+  "C009": "taxi-over-cap",
+  "C011": "missing-receipt",
+  "C013": "meal-over-cap",
+  "C016": "hotel-over-cap",
+  "C019": "over-claim",
+  "C023": "weekend-meal",
+  "C027": "taxi-over-cap",
+  "C031": "meal-over-cap",
+  "C035": "hotel-over-cap"
+}

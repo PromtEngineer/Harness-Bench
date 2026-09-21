@@ -1,0 +1,8 @@
+NATIONAL RAIL / E-TICKET
+Ticket: RL-4420
+Travel date: 18 Mar 2026
+From: Airport   To: Hotel
+City of issue: London
+Class: Standard  Coach D Seat 54
+PRICE: GBP 56.00
+Ticket conditions apply.

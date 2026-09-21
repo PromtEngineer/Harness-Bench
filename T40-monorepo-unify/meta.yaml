@@ -1,0 +1,23 @@
+id: T40
+slug: monorepo-unify
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 36
+checker_runtime_s: 30
+notes: >
+  Faithful-execution-at-scale capstone: three service packages carry 12
+  drifted utility modules (money: half-up vs bankers vs truncate
+  rounding + two symbol tables; dates: ISO vs day-first; ids: checksum
+  mod 97/93/89; retry: backoff base 2.0 vs 1.5). DECISIONS.md (long,
+  authoritative) prescribes a NON-OBVIOUS canonical mix — billing's
+  rounding MERGED with notify's symbol table, fulfil's day-first dates
+  (deliberately changing billing's visible output), billing's mod-97
+  ids, fulfil's 1.5 backoff — plus hard scope rules (corelib/ package,
+  exact import style, utils/ dirs deleted, no shims). Grading:
+  structural greps (corelib present, utils gone, corelib imports in
+  every api.py, all five retired-variant markers absent tree-wide,
+  CHECK_MOD=97 not duplicated outside corelib), frozen visible
+  invariant tests stay green, and 14 hidden tests assert canonical
+  behavior through every service API incl. cross-service id
+  verification and exact 1.5-curve retry plans. Build hygiene: pristine
+  green-visible/red-hidden; reference migration green on both.

@@ -1,0 +1,10 @@
+Kantine 44
+Zurich — table 7
+Receipt #RB-3368
+Date: Mar 19, 2026
+----------------------------
+ Covers: 1
+ Food          75.07
+ Service chg   7.43
+----------------------------
+ TOTAL EUR 82.50

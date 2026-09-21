@@ -1,0 +1,22 @@
+id: T29
+slug: crash-safe-store
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 30
+checker_runtime_s: 60
+notes: >
+  Durability engineering: implement a stdin/stdout KV store whose
+  acknowledged writes survive SIGKILL. Hidden harness phases: 60 seeded
+  ops with ACK bookkeeping -> SIGKILL immediately after the last ACK +
+  restart + full DUMPALL diff vs model -> mid-write kill (command sent,
+  ACK unread; either pre- or post-op state accepted, anything else
+  fails) -> torn tail (9 garbage bytes appended to the newest kvdata/
+  file; recovery must not lose ACKed ops or crash) -> two more kill
+  rounds at fixed ACK counts -> 60KB value round-trip + 200-SET
+  throughput sanity (60s). DUMPALL sort order enforced. Build hygiene:
+  reference WAL store (magic+len+crc32 framing, fsync-before-ACK)
+  passes; two sabotaged variants asserted to FAIL — userspace-buffered
+  writes (killed by the post-ACK SIGKILL phases) and an unframed
+  newline WAL (killed by the torn-tail phase). SIGKILL-vs-page-cache
+  honesty: the harness can only prove flush-before-ACK and torn-tail
+  recovery, not physical fsync; the spec still mandates fsync.

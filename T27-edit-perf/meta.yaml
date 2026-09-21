@@ -1,0 +1,20 @@
+id: T27
+slug: edit-perf
+tier: expert
+timeout_s: 1800
+min_turns_estimate: 26
+checker_runtime_s: 200
+notes: >
+  Algorithmic performance task: driver.py (guarded) streams 400k
+  insert/delete/slice ops over an 8MB document through edbuf.Buffer and
+  prints a sha256 digest that folds in every slice result plus the final
+  document, so intermediate correctness is enforced. The shipped Buffer
+  is a correct naive str-concat implementation (O(doc) per op, ~3.2TB of copying on the full workload); the 90s
+  budget (150s hard timeout) requires a
+  real structure (reference: 8KB chunks + Fenwick position index, ~10-30s
+  measured at build). Anti-hardcoding: a second hidden doc+ops pair from
+  a different seed runs under the same budget, and hidden unit tests pin
+  the clamping contract (negative/overlong positions, 3% of generated
+  ops are deliberately out of range). Build hygiene: naive and fast
+  implementations cross-checked on the sample workload digest and on 300
+  randomized micro-sequences; reference timing asserted under 40s.

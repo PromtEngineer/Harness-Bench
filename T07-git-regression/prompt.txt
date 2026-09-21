@@ -1,0 +1,25 @@
+Your workspace contains a git repository at ./pricer — a small pricing library
+(src/pricer/*.py plus a pytest suite in pricer/tests/).
+
+The suite is failing at HEAD: `cd pricer && python3 -m pytest -q` shows
+tests/test_bulk.py failing. It did not always fail — some past commit
+introduced the regression.
+
+Tasks:
+1. Identify the commit that INTRODUCED the regression (the first commit at
+   which tests/test_bulk.py fails). Write its full 40-character commit hash,
+   and nothing else, into ./regression.txt at the WORKSPACE ROOT (next to the
+   pricer/ directory, not inside it).
+2. Fix the code at HEAD so the whole suite is green:
+   `cd pricer && python3 -m pytest -q` must pass.
+
+Rules:
+- Do NOT rewrite history: no rebase, no reset, no commit --amend, no
+  filter-branch. Creating new commits on top of HEAD is allowed but not
+  required — an uncommitted working-tree fix is fine. If you check out old
+  commits while investigating, return the repo to the original HEAD when done.
+- Do NOT add, remove, or modify anything under pricer/tests/, and do not
+  modify pricer/conftest.py.
+
+Deliverables: ./regression.txt (exactly the 40-char hash of the bad commit)
+and a fully passing test suite in ./pricer.

@@ -1,0 +1,18 @@
+id: T13
+slug: reimbursement-audit
+tier: hard
+timeout_s: 900
+min_turns_estimate: 28
+checker_runtime_s: 5
+notes: >
+  Multi-source policy audit: 40 claims in ledger.csv cross-checked against 40
+  plain-text receipts in 5 layouts, a policy doc, and fixed FX rates
+  (ROUND HALF-UP at conversion). Exactly 12 planted violations across 6 rule
+  types (missing-receipt, over-claim, weekend-meal, taxi-over-cap,
+  meal-over-cap, hotel-over-cap). Deliverable: violations.json sorted by
+  claim_id; checker compares to expected/violations.json (rule exact,
+  excess_usd within ±0.01) and sha256-guards ledger/policy/rates/receipts.
+  Ground truth is computed by gen/audit.py from the generated fixture (never
+  hand-computed); gen/planted.json records intent and audit.py asserts they
+  agree. Regenerate with: python3 gen/make_fixture.py && python3 gen/audit.py
+  (then rebuild expected/fixture.sha256).

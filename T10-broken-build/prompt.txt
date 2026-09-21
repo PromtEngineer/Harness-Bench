@@ -1,0 +1,10 @@
+The Python package in this workspace ("chronolib", src layout) does not build or run. Fix it so that the following exact command, run from the workspace root, succeeds end to end (all tests pass):
+
+python3 -m venv .venv && .venv/bin/pip install --no-index --find-links wheels setuptools pytest && .venv/bin/pip install -e . --no-index --no-build-isolation && .venv/bin/python -m pytest -q
+
+Notes:
+- There is no network access. The wheels/ directory already contains every wheel the command needs (setuptools, pytest and its dependencies); do not add, remove, or replace anything in wheels/.
+- The tests in tests/ define the expected behavior. Do NOT modify anything under tests/ (this is verified).
+- There are multiple independent problems layered on top of each other: fixing one will reveal the next. Diagnose by running the command (or parts of it) and reading the errors.
+- Fix the package configuration and source code only. Do not rename the package: it must remain importable as "chronolib" with __version__ == "0.3.0".
+- The grader wipes any .venv you leave behind and re-runs the exact command above in a fresh copy of your workspace, so the fix must work from scratch, not just in your current shell session.

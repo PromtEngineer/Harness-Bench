@@ -1,0 +1,10 @@
+Trattoria Lume
+Paris — table 9
+Receipt #RB-3330
+Date: Mar 12, 2026
+----------------------------
+ Covers: 1
+ Food          47.59
+ Service chg   4.71
+----------------------------
+ TOTAL EUR 52.30
